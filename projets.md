@@ -1,7 +1,16 @@
 
 # Liste de projets:
 
-## Web backend
+## Thèmes:
+
+* [Web backend](#web-backend)
+* [UI / web front-end](#ui-frontend)
+* [Dev tools](#dev-tools)
+* [Sécurité](#sécurité)
+* [Jeux vidéo](#jeux-videos)
+* [Système embarqué](#systemes-embarqués)
+
+## <a name="web-backend"></a> Web backend
 
 ### 1. Un moteur de blog en Rust
 
@@ -23,7 +32,7 @@
 - Difficulté: _difficile_
 - Taille de groupe recommandé: **2**
 
-## UI / web front-end
+## <a name="ui-frontend"></a> UI / web front-end
 
 ### 5. Un client mail simpliste
 
@@ -45,7 +54,7 @@
 - Difficulté: _difficile_
 - Taille de groupe recommandé: **2**
 
-## Dev tools
+## <a name="dev-tools"></a> Dev tools
 
 ### 9. Un outil de tree shaking pour Rust
 
@@ -62,14 +71,14 @@
 - Difficulté: _difficile_
 - Taille de groupe recommandé: **2**
 
-## Sécurité
+## <a name="sécurité"></a> Sécurité
 
 ### 12. Sandboxing de cargo
 
 - Difficulté: _difficile_
 - Taille de groupe recommandé: **2**
 
-## Jeux vidéo
+## <a name="jeux-videos"></a> Jeux vidéo
 
 ### 13. un RTS (2D ou 3D)
 
@@ -101,7 +110,7 @@
 - Difficulté: _difficile_
 - Taille de groupe recommandé: **2**
 
-## Système embarqué
+## <a name="systemes-embarqués"></a> Système embarqué
 
 ### 19. Une boite à musique avec un raspberry Pi pico
     
