@@ -1140,8 +1140,8 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 </ul>
 </li>
 </ul>
-<h2><a href="#variable-bindings">Variable bindings</a></h2>
-<h3><a href="#the-let-keyword">The <code>let</code> keyword</a></h3>
+<h2><a name="variable-bindings"></a>Variable bindings</h2>
+<h3><a name="the-let-keyword"></a>The <code>let</code> keyword</h3>
 <p><code>let</code> introduces a variable binding:</p>
 <pre><code class="language-Rust">
 let x; // declare &quot;x&quot;
@@ -1150,7 +1150,7 @@ x = 42; // assign 42 to &quot;x&quot;
 <p>This can also be written as a single line:</p>
 <pre><code class="language-Rust">let x = 42;
 </code></pre>
-<h3><a href="#uninitialized-variables">Uninitialized variables</a></h3>
+<h3><a name="uninitialized-variables"></a>Uninitialized variables</h3>
 <p>If you declare a name and initialize it later, the compiler will prevent you from using it before it's initialized.</p>
 <pre><code class="language-Rust">let x;
 foobar(x); // error:-uninitialized variable: `x`
@@ -1161,7 +1161,7 @@ x = 42;
 x = 42;
 foobar(x); // the type of `x` will be inferred from here
 </code></pre>
-<h3><a href="#type-annotation">Type annotation</a></h3>
+<h3><a name="type-annotation"></a>Type annotation</h3>
 <p>Rust performs <strong>type inference</strong>, so you don't usually have to spell out the type of a variable explicitly, but you can specify it explicitly if you want, using <code>:</code>, that's a type annotation:</p>
 <pre><code class="language-Rust">let x: i32; // `i32` is a signed 32-bit integer
 x = 42;
@@ -1169,7 +1169,7 @@ x = 42;
 <p>This can also be written as a single line:</p>
 <pre><code class="language-Rust">let x: i32 = 42;
 </code></pre>
-<h3><a href="#statements">Statements</a></h3>
+<h3><a name="statements"></a>Statements</h3>
 <p>The semi-colon marks the end of a statement:</p>
 <pre><code class="language-Rust">let x = 3;
 let y = 5;
@@ -1182,7 +1182,7 @@ let x = vec![1, 2, 3, 4, 5, 6, 7, 8]
     .map(|x| x + 3)
     .fold(0, |x, y| x + y); // (We'll go over what those actually mean later).
 </code></pre>
-<h3><a href="#throwing-values-away">Throwing values away</a></h3>
+<h3><a name="throwing-values-away"></a>Throwing values away</h3>
 <p>The underscore <code>_</code> is a special name - or rather, a &quot;lack of name&quot;. It basically means to throw away something:</p>
 <pre><code class="language-Rust">// this does *nothing* because 42 is a constant
 let _ = 42;
@@ -1195,13 +1195,13 @@ let _ = get_thing();
 // and we just wanted to get rid of a compiler warning for now.
 let _x = 42;
 </code></pre>
-<h3><a href="#shadowing-bindings">Shadowing bindings</a></h3>
+<h3><a name="shadowing-bindings"></a>Shadowing bindings</h3>
 <p>Separate bindings with the same name can be introduced - you can <em>shadow</em> a variable binding:</p>
 <pre><code class="language-Rust">let x = 13;
 let x = x + 3;
 // using `x` after that line only refers to the second `x`
 </code></pre>
-<h3><a href="#immutability">Immutability</a></h3>
+<h3><a name="immutability"></a>Immutability</h3>
 <p>Variable bindings are immutable by default, which means they cannot be assigned to:</p>
 <pre><code class="language-Rust">fn main() {
     let n = 17;
@@ -1227,8 +1227,8 @@ let x = x + 3;
     n.value = 19; // all good
 }
 </code></pre>
-<h2><a href="#control-flow">Control flow</a></h2>
-<h3><a href="#if-else">If/else</a></h3>
+<h2><a name="control-flow"></a>Control flow</h2>
+<h3><a name="if-else"></a>If/else</h3>
 <p>Like all programming languages, Rust has <code>if</code> conditions. But unlike most other languages, there's no parentheses around the condition:</p>
 <pre><code class="language-Rust">
 if is_valid {
@@ -1249,7 +1249,7 @@ if is_blue {
 
 }
 </code></pre>
-<h3><a href="#match">Match</a></h3>
+<h3><a name="match"></a>Match</h3>
 <p>For complex matching, Rust has the <code>match</code> keyword, which works a bit like <code>switch</code> in other languages:</p>
 <pre><code class="language-Rust">
 match name {
@@ -1305,16 +1305,16 @@ switch(number){
 }
 </code></pre>
 <p>If you don't need the value, <code>_</code> can be used as the &quot;catch-all&quot; pattern, like in the examples above.</p>
-<h3><a href="#loops-iterators">Loops, iterators</a></h3>
+<h3><a name="loops-iterators"></a>Loops, iterators</h3>
 <p>Rust has three different kinds of loops.</p>
-<h3><a href="#while-loops">While loops</a></h3>
+<h3><a name="while-loops"></a>While loops</h3>
 <p>While loops are pretty straightfoward, it's just the <code>while</code> keyword, followed by a boolean condition not surounded in parentheses (exactly like <code>if</code>):</p>
 <pre><code class="language-Rust">while condition {
     // do something repeatedly
 }
 </code></pre>
 <p>Like with most programming languages, you can either skip the current round of the loop with the <code>continue</code> keyword, or break out of the loop entirely with the <code>break</code> keyword.</p>
-<h3><a href="#loop-loops">Loop loops</a></h3>
+<h3><a name="loop-loops"></a>Loop loops</h3>
 <p>For the special situation where the program is supposed to loop forever, with no particular condition, there's the <code>loop</code> keyword.</p>
 <pre><code class="language-Rust">
 loop {
@@ -1329,7 +1329,7 @@ while true {
 }
 
 </code></pre>
-<h3><a href="#for-loops">For loops</a></h3>
+<h3><a name="for-loops"></a>For loops</h3>
 <p>The most common type of loops is the <code>for</code> loop.</p>
 <p>Unlike most programming languages out there, Rust only accepts a single syntax for <code>for</code> loop, which is based on iterators.</p>
 <p>Anything that is iterable can be used in a <code>for</code> loop.</p>
@@ -1340,7 +1340,7 @@ while true {
     }
 }
 </code></pre>
-<h3><a href="#ranges">Ranges</a></h3>
+<h3><a name="ranges"></a>Ranges</h3>
 <p>If you want to iterate between <code>0</code> and <code>n</code>, you need to use ranges.</p>
 <pre><code class="language-Rust">
 for i in 0..n {
@@ -1350,8 +1350,8 @@ for i in 0..n {
 </code></pre>
 <p>There are two kinds of ranges, <strong>exclusive</strong> ranges <code>a..b</code> which go from <code>a</code> to <code>b-1</code>.</p>
 <p>And <strong>inclusive</strong> ranges <code>a..=b</code> which go from <code>a</code> to <code>b</code> included. </p>
-<h2><a href="#types">Types</a></h2>
-<h3><a href="#base-types">Base types</a></h3>
+<h2><a name="types"></a>Types</h2>
+<h3><a name="base-types"></a>Base types</h3>
 <p>Rust has a bunch of basic types.</p>
 <p>Different size of <em>signed</em> integer:</p>
 <ul>
@@ -1400,7 +1400,7 @@ for i in 0..n {
 <p>String <em>litterals</em> are being written between double quotes (<code>&quot;</code>) and they are references to a string slice:</p>
 <pre><code class="language-Rust">let hello_world: &amp;str = &quot;Hello, World!&quot;;
 </code></pre>
-<h3><a href="#structs">Structs</a></h3>
+<h3><a name="structs"></a>Structs</h3>
 <p>Structs are the equivalent of classes in other langages, they are declared with the <code>struct</code> keyword:</p>
 <p>Rust code</p>
 <pre><code class="language-Rust">struct Vec2 {
@@ -1417,7 +1417,7 @@ let v2 = Vec2 { y: 2.0, x: 4.0 };
 <pre><code class="language-Rust">v.x 
 </code></pre>
 <p>By convention, in Rust structs, and every other <em>types</em> are spelled out in <em>PascalCase</em> (like camelCase, but with an upper case letter at the begining)</p>
-<h3><a href="#struct-literal-assignment-shorthand">Struct literal assignment shorthand</a></h3>
+<h3><a name="struct-literal-assignment-shorthand"></a>Struct literal assignment shorthand</h3>
 <p>Speaking of: in a struct literal, when a field is set to a variable binding of the same name:</p>
 <pre><code class="language-Rust">let p = Person { name: name };
 </code></pre>
@@ -1425,7 +1425,7 @@ let v2 = Vec2 { y: 2.0, x: 4.0 };
 <pre><code class="language-Rust">let p = Person { name };
 </code></pre>
 <p>Tools like <a href="https://doc.rust-lang.org/stable/clippy/usage.html">clippy</a> will suggest making those changes, and even apply the fix programmatically if you let it.</p>
-<h3><a href="#struct-update-syntax">Struct update syntax</a></h3>
+<h3><a name="struct-update-syntax"></a>Struct update syntax</h3>
 <p>There is a shortcut for initializing the <em>rest of the fields</em> from another struct:</p>
 <pre><code class="language-Rust">let v3 = Vec2 {
     x: 14.0,
@@ -1436,7 +1436,7 @@ let v2 = Vec2 { y: 2.0, x: 4.0 };
 <p>Note that <em>the rest of the fields</em> can mean <em>all the fields</em>:</p>
 <pre><code class="language-Rust">let v4 = Vec2 { ..v3 };
 </code></pre>
-<h3><a href="#tuples">Tuples</a></h3>
+<h3><a name="tuples"></a>Tuples</h3>
 <p>Rust has tuples, which you can think of as &quot;fixed-length collections of values of different types&quot;. Tuples are kind of “anonymous structs” were fields are also anonymous.</p>
 <pre><code class="language-Rust">let pair = ('a', 17);
 pair.0; // this is 'a'
@@ -1448,7 +1448,7 @@ pair.1; // this is 17
 <p>There's also the concept of <em>“Tuple Struct”</em>, which are <em>named</em>, like structs, but fields are anonymous like tuples. They are defined with the <code>struct</code> keyword, but uses parentheses like normal tuples.</p>
 <pre><code class="language-Rust">struct Foo(u32, u32);
 </code></pre>
-<h3><a href="#enums-sum-types">Enums (sum types)</a></h3>
+<h3><a name="enums-sum-types"></a>Enums (sum types)</h3>
 <p>When you want to express <code>alternatives</code>, you can use enums.</p>
 <pre><code class="language-Rust">enum Side {
     Left,
@@ -1482,7 +1482,7 @@ enum IceCream{
 }
 
 </code></pre>
-<h2><a href="#functions">Functions</a></h2>
+<h2><a name="functions"></a>Functions</h2>
 <p><code>fn</code> declares a function.</p>
 <p>Here's a void function:</p>
 <pre><code class="language-Rust">fn greet() {
@@ -1501,7 +1501,7 @@ enum IceCream{
 </code></pre>
 <p>For functions parameters and return value, the type must be written down explicitly, there's no type inference here.</p>
 <p>And by convention, in Rust functions are spelled with <em>snake_case</em>: It's <code>fair_dice_roll()</code> not <code>fairDiceRoll()</code>.</p>
-<h3><a href="#values-and-reference">Passing argument by value or by reference</a></h3>
+<h3><a name="values-and-reference"></a>Passing argument by value or by reference</h3>
 <p>Unlike some other programming languages, Rust doesn't have an implicit “this kinds of things pass by values and these other passes by reference”, it must be spelled in the type of the parameter. References are written using the <code>&amp;</code> symbol.</p>
 <pre><code class="language-Rust">
 fn by_value(i: u32){
@@ -1537,13 +1537,13 @@ let mut y = 34;
 by_ref_mut(&amp;mut y);
 
 </code></pre>
-<h3><a href="#dereferencing">Dereferencing</a></h3>
+<h3><a name="dereferencing"></a>Dereferencing</h3>
 <p>To access an item behind a reference, you need to <strong>dereference</strong> it, with the <code>*</code> symbol:</p>
 <pre><code class="language-Rust">fn foo(i: &amp;mut u32){
     *i = 42; // updates the value pointed by the reference to 42
 }
 </code></pre>
-<h3><a href="#methods">Methods</a></h3>
+<h3><a name="methods"></a>Methods</h3>
 <p>You can declare methods on any of the types you've defined, be it a struct, an enum or a tupple struct (but not regular tuples, because you don't “define” them).</p>
 <p>As with most programming languages, there're two kinds of methods: “regular methods”, that are being run on the object itself, and what object oriented programming languages call “static methods” which are methods of the type itself. “Regular methods” are called with a dot (<code>.</code>) on the object whereas “static methods” are called with a double colon (<code>::</code>) on the type:</p>
 <pre><code class="language-Rust">
@@ -1619,7 +1619,7 @@ fn main(){
 }
 </code></pre>
 <p>Like any parameters of any function, the <code>self</code> parameter can be passed by value, by reference or by mutable reference.</p>
-<h3><a href="#the-self-type">The <code>Self</code> type</a></h3>
+<h3><a name="the-self-type"></a>The <code>Self</code> type</h3>
 <p>An <code>impl</code> block is always <em>for</em> a type, so, inside that block, <code>Self</code> means that type:</p>
 <pre><code class="language-Rust">struct ComplexNumper{
     real: f64,
@@ -1635,7 +1635,7 @@ impl ComplexNumber {
     }
 }
 </code></pre>
-<h2><a href="#blocks">Blocks</a></h2>
+<h2><a name="blocks"></a>Blocks</h2>
 <p>A pair of brackets declares a block, which has its own scope:</p>
 <pre><code class="language-Rust">// This prints &quot;in&quot;, then &quot;out&quot;
 fn main() {
@@ -1650,7 +1650,7 @@ fn main() {
     // prints &quot;out&quot;
 }
 </code></pre>
-<h3><a href="#blocks-are-expressions">Blocks are expressions</a></h3>
+<h3><a name="blocks-are-expressions"></a>Blocks are expressions</h3>
 <p>Blocks are also expressions, which mean they evaluate to a value.</p>
 <pre><code class="language-Rust">// this:
 let x = 42;
@@ -1666,7 +1666,7 @@ let x = { 42 };
 };
 // here x is equal to 3
 </code></pre>
-<h3><a href="#implicit-return">Implicit return</a></h3>
+<h3><a name="implicit-return"></a>Implicit return</h3>
 <p>Because blocks can return value, you don't need the <code>return</code> keyword at the end of a function either, these are equivalent:</p>
 <pre><code class="language-Rust">fn fair_dice_roll() -&gt; i32 {
     return 4;
@@ -1676,7 +1676,7 @@ fn fair_dice_roll() -&gt; i32 {
     4
 }
 </code></pre>
-<h3><a href="#everything-is-an-expression">Everything is an expression</a></h3>
+<h3><a name="everything-is-an-expression"></a>Everything is an expression</h3>
 <p><code>if</code> conditionals are also expressions:</p>
 <pre><code class="language-Rust">let num = if feeling_lucky {
     6
@@ -1700,8 +1700,8 @@ fn fair_dice_roll() -&gt; i32 {
     }
 } 
 </code></pre>
-<h2><a href="#patterns-and-destructuring">Patterns and destructuring</a></h2>
-<h3><a href="#destructuring-tuples">Destructuring tuples</a></h3>
+<h2><a name="patterns-and-destructuring"></a>Patterns and destructuring</h2>
+<h3><a name="destructuring-tuples"></a>Destructuring tuples</h3>
 <p>Tuples can be <em>destructured</em> when doing an assignment, which means they're broken down into their individual fields:</p>
 <pre><code class="language-Rust">let (some_char, some_int) = ('a', 17);
 // now, `some_char` is 'a', and `some_int` is 17
@@ -1713,14 +1713,14 @@ fn fair_dice_roll() -&gt; i32 {
 <p>Of course, when destructuring a tuple, <code>_</code> can be used to throw away part of it:</p>
 <pre><code class="language-Rust">let (_, right) = slice.split_at(middle);
 </code></pre>
-<h3><a href="#destructuring-structs">Destructuring structs</a></h3>
+<h3><a name="destructuring-structs"></a>Destructuring structs</h3>
 <pre><code class="language-Rust">let v = Vec2 { x: 3.0, y: 6.0 };
 let Vec2 { x, y } = v; // `x` is now 3.0, `y` is now `6.0`
 </code></pre>
 <p>And this:</p>
 <pre><code class="language-Rust">let Vec2 { x, .. } = v; // this throws away `v.y`
 </code></pre>
-<h3><a href="#destructuring-with-if-let">Destructuring with <code>if let</code></a></h3>
+<h3><a name="destructuring-with-if-let"></a>Destructuring with <code>if let</code></h3>
 <p>Because enums have multiple variants, you cannot simply destructure like you'd do for struct. But <code>let</code> patterns can be used as conditions in <code>if</code>:</p>
 <pre><code class="language-Rust">
 ```Rust
@@ -1774,7 +1774,7 @@ fn print_number(n: Number) {
 // Odd number: 1
 // Even number: 2
 </code></pre>
-<h3><a href="#match-arms-are-patterns">Match arms are patterns</a></h3>
+<h3><a name="match-arms-are-patterns"></a>Match arms are patterns</h3>
 <p><code>match</code> arms are also patterns, just like <code>if let</code>:</p>
 <pre><code class="language-Rust">fn print_all_flavor(i: IceCrean) {
     match i {
@@ -1786,7 +1786,7 @@ fn print_number(n: Number) {
     }
 }
 </code></pre>
-<h2><a href="#macros">Macros</a></h2>
+<h2><a name="macros"></a>Macros</h2>
 <p>Macros are kind of like functions, but with an exclamation mark at the end. Unlike functions, that aren't called at run time, with some parameters. They are <strong>expanded</strong> at compile time into normal code. Macros are being used to reduce boilerplate in repetitive code. </p>
 <p>For instance, <code>println!</code> is a macro: </p>
 <pre><code class="language-Rust">fn main() { 
@@ -1814,7 +1814,7 @@ let v = vec!{1,2,3,4,5};
 </code></pre>
 <p>By <em>convention</em> macros that behaves like a simple function are being called with <code>()</code>, <code>[]</code> is used with the only for the <code>vec!</code> macro, and macros that do more fancy stuff use <code>{}</code>.</p>
 <p>Using macros is very common, most of the time the macros come from the standard library (<code>println!</code>, <code>vec!</code>, <code>assert_eq!</code>, for example), but they can also come from a library or you can define your own, even though this is much rarer.</p>
-<h3><a href="#the-println-and-format-macros">The <code>println!</code> and <code>format!</code> macros</a></h3>
+<h3><a name="the-println-and-format-macros"></a>The <code>println!</code> and <code>format!</code> macros</h3>
 <p>For text formatting, there's a very common macro called <code>format!</code> which is internally being used in a lot of other macros, including the <code>println!</code> one that prints line to the terminal.</p>
 <p>In can print variables if you include their name directly in the format string between curly brakets like this:</p>
 <pre><code class="language-Rust">let x = 4;
@@ -1833,14 +1833,14 @@ fn main(){
 }
 
 </code></pre>
-<h3><a href="#the-panic-macro">The <code>panic!</code> macro</a></h3>
+<h3><a name="the-panic-macro"></a>The <code>panic!</code> macro</h3>
 <p><code>panic</code> is also a macro. It violently stops execution with an error message, and the file name / line number of the error, if enabled:</p>
 <pre><code class="language-Rust">fn main() {
     panic!(&quot;This panics&quot;);
 }
 // output: thread 'main' panicked at 'This panics', src/main.rs:3:5
 </code></pre>
-<h3><a href="#functions-that-panic">Functions that panic</a></h3>
+<h3><a name="functions-that-panic"></a>Functions that panic</h3>
 <p>Some methods also panic. For example, the <code>Option</code> type can contain something, or it can contain nothing. If <code>.unwrap()</code> is called on it, and it contains nothing, it panics:</p>
 <pre><code class="language-Rust">fn main() {
     let o1: Option&lt;i32&gt; = Some(128);
@@ -1852,8 +1852,8 @@ fn main(){
 
 // output: thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', src/libcore/option.rs:378:21
 </code></pre>
-<h2><a href="#generics">Generics</a></h2>
-<h3><a href="#generic-structs">Generic structs</a></h3>
+<h2><a name="generics"></a>Generics</h2>
+<h3><a name="generic-structs"></a>Generic structs</h3>
 <p>Structs can be generic, that is: they can exist in various forms, thanks to the generic (that is, variable) type they contain.</p>
 <p>The standard library type <code>Vec</code> (~ a heap-allocated, growable, array), is generic over the type of elements it contains:</p>
 <pre><code class="language-Rust">
@@ -1882,19 +1882,19 @@ fn main() {
     Err(E),
 }
 </code></pre>
-<h3><a href="#generic-functions">Generic functions</a></h3>
+<h3><a name="generic-functions"></a>Generic functions</h3>
 <p>Functions can also be generic:</p>
 <pre><code class="language-Rust">fn foobar&lt;T&gt;(arg: T) {
     // do something with `arg`
 }
 </code></pre>
-<h3><a href="#traits">Traits</a></h3>
+<h3><a name="traits"></a>Traits</h3>
 <p>Traits are the Rust equivalent of an “interface” in other languages, they are something multiple types can have in common:</p>
 <pre><code class="language-Rust">trait Signed {
     fn is_strictly_negative(self) -&gt; bool;
 }
 </code></pre>
-<h3><a href="#type-parameter-constraints-trait-bounds">Type parameter constraints (trait bounds)</a></h3>
+<h3><a name="type-parameter-constraints-trait-bounds"></a>Type parameter constraints (trait bounds)</h3>
 <p>Generic type parameters usually have <em>constraints</em>, so you can actually do something with them.</p>
 <p>The simplest constraints are just trait names:</p>
 <pre><code class="language-Rust">fn print&lt;T: Signed&gt;(value: T) {
@@ -1911,9 +1911,9 @@ fn main() {
 }
 </code></pre>
 <p>The two syntaxes above are strictly equivalent, the first one is the most common for simple situation, and the second gets used when the traits constraints are getting hairier.</p>
-<h2><a href="#modules">Modules</a></h2>
+<h2><a name="modules"></a>Modules</h2>
 <p>Rust code is organised in <em>crates</em>(~ a library), which contains <em>modules</em>. Modules can be nested, so you have modules that belongs to other modules. The standard library is a <em>crate</em>, that's included by default in your projects, then there's the <em>crates</em> you added as dependencies, and there's your own crate. All of these crates contains modules, that contains the types, traits and function you're going to use on your project.</p>
-<h3><a href="#use-syntax"><code>use</code> syntax</a></h3>
+<h3><a name="use-syntax"></a><code>use</code> syntax</h3>
 <p>To use types and functions defined outside of your current model, like in the standard library or in your dependencies, you need to use their full namespace path to refer to them: In this example, <code>std</code> is the <em>crate</em> , <code>cmp</code> is the <em>module</em>, and <code>min</code> is the <em>function</em>:</p>
 <pre><code class="language-Rust">let least = std::cmp::min(3, 8); // the min function computes the minimum between two number, so the result is 3
 </code></pre>
@@ -1942,7 +1942,7 @@ use std::{cmp::min, cmp::max};
 <pre><code class="language-Rust">// this brings `min` and `max` in scope, and many other things
 use std::cmp::*;
 </code></pre>
-<h3><a href="#the-libstd-prelude">The libstd prelude</a></h3>
+<h3><a name="the-libstd-prelude"></a>The libstd prelude</h3>
 <p><code>str</code> is a primitive type, but many non-primitive types are also in scope by default.</p>
 <pre><code class="language-Rust">// `Vec` is a regular struct, not a primitive type
 let v = Vec::new();
@@ -1954,7 +1954,7 @@ let v = std::vec::Vec::new();
 <pre><code class="language-Rust">use std::prelude::v1::*;
 </code></pre>
 <p>(Which in turns re-exports a lot of symbols, like <code>Vec</code>, <code>String</code>, <code>Option</code> and <code>Result</code>).</p>
-<h3><a href="#crates">Crates</a></h3>
+<h3><a name="crates"></a>Crates</h3>
 <p>Crates are the rust name for external libraries. They can be found on <a href="https://crates.io">crates.io</a> or <a href="lib.rs">lib.rs</a> (which is just an alternative front-end for crates.io).</p>
 <p>To install a crate you can either edit your <code>Cargo.toml</code> file manually:</p>
 <pre><code class="language-Toml">[dependencies]

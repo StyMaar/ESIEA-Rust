@@ -56,10 +56,10 @@ _note_ this document took **heavy** inspiration (with lots of copy-paste) from F
     *   [The libstd prelude](#the-libstd-prelude)
 
 
-[Variable bindings](#variable-bindings)
+<a name="variable-bindings"></a>Variable bindings
 ---------------------------------------
 
-### [The `let` keyword](#the-let-keyword)
+### <a name="the-let-keyword"></a>The `let` keyword
 
 `let` introduces a variable binding:
 
@@ -76,7 +76,7 @@ This can also be written as a single line:
 let x = 42;
 ```
 
-### [Uninitialized variables](#uninitialized-variables)
+### <a name="uninitialized-variables"></a>Uninitialized variables
 
 If you declare a name and initialize it later, the compiler will prevent you from using it before it's initialized.
 
@@ -95,7 +95,7 @@ foobar(x); // the type of `x` will be inferred from here
 ```
 
 
-### [Type annotation](#type-annotation)
+### <a name="type-annotation"></a>Type annotation
 
 Rust performs **type inference**, so you don't usually have to spell out the type of a variable explicitly, but you can specify it explicitly if you want, using `:`, that's a type annotation:
 
@@ -111,7 +111,7 @@ let x: i32 = 42;
 ```
 
 
-### [Statements](#statements)
+### <a name="statements"></a>Statements
 
 The semi-colon marks the end of a statement:
 
@@ -132,7 +132,7 @@ let x = vec![1, 2, 3, 4, 5, 6, 7, 8]
 ```
 
 
-### [Throwing values away](#throwing-values-away)
+### <a name="throwing-values-away"></a>Throwing values away
 
 The underscore `_` is a special name - or rather, a "lack of name". It basically means to throw away something:
 
@@ -152,7 +152,7 @@ Names that _start_ with an underscore are regular names, it's just that the **co
 let _x = 42;
 ```
 
-### [Shadowing bindings](#shadowing-bindings)
+### <a name="shadowing-bindings"></a>Shadowing bindings
 
 Separate bindings with the same name can be introduced - you can _shadow_ a variable binding:
 
@@ -161,7 +161,7 @@ let x = 13;
 let x = x + 3;
 // using `x` after that line only refers to the second `x`
 ```
-### [Immutability](#immutability)
+### <a name="immutability"></a>Immutability
 
 Variable bindings are immutable by default, which means they cannot be assigned to:
 
@@ -197,10 +197,10 @@ fn main() {
 }
 ```
 
-[Control flow](#control-flow)
+<a name="control-flow"></a>Control flow
 -----------------------------
 
-### [If/else](#if-else)
+### <a name="if-else"></a>If/else
 
 Like all programming languages, Rust has `if` conditions. But unlike most other languages, there's no parentheses around the condition:
 
@@ -228,7 +228,7 @@ if is_blue {
 }
 ```
 
-### [Match](#match)
+### <a name="match"></a>Match
 
 For complex matching, Rust has the `match` keyword, which works a bit like `switch` in other languages:
 
@@ -302,11 +302,11 @@ match n {
 
 If you don't need the value, `_` can be used as the "catch-all" pattern, like in the examples above.
 
-### [Loops, iterators](#loops-iterators)
+### <a name="loops-iterators"></a>Loops, iterators
 
 Rust has three different kinds of loops.
 
-### [While loops](#while-loops)
+### <a name="while-loops"></a>While loops
 
 While loops are pretty straightfoward, it's just the `while` keyword, followed by a boolean condition not surounded in parentheses (exactly like `if`):
 
@@ -319,7 +319,7 @@ while condition {
 Like with most programming languages, you can either skip the current round of the loop with the `continue` keyword, or break out of the loop entirely with the `break` keyword.
 
 
-### [Loop loops](#loop-loops)
+### <a name="loop-loops"></a>Loop loops
 
 For the special situation where the program is supposed to loop forever, with no particular condition, there's the `loop` keyword.
 
@@ -341,7 +341,7 @@ while true {
 
 ```
 
-### [For loops](#for-loops)
+### <a name="for-loops"></a>For loops
 
 The most common type of loops is the `for` loop.
 
@@ -359,7 +359,7 @@ fn main() {
 }
 ```
 
-### [Ranges](#ranges)
+### <a name="ranges"></a>Ranges
 
 If you want to iterate between `0` and `n`, you need to use ranges.
 
@@ -375,10 +375,10 @@ There are two kinds of ranges, **exclusive** ranges `a..b` which go from `a` to 
 
 And **inclusive** ranges `a..=b` which go from `a` to `b` included. 
 
-[Types](#types)
+<a name="types"></a>Types
 -------------------------
 
-### [Base types](#base-types)
+### <a name="base-types"></a>Base types
 
 Rust has a bunch of basic types.
 
@@ -442,7 +442,7 @@ let hello_world: &str = "Hello, World!";
 ```
 
 
-### [Structs](#structs)
+### <a name="structs"></a>Structs
 
 Structs are the equivalent of classes in other langages, they are declared with the `struct` keyword:
 
@@ -470,7 +470,7 @@ v.x
 
 By convention, in Rust structs, and every other _types_ are spelled out in _PascalCase_ (like camelCase, but with an upper case letter at the begining)
 
-### [Struct literal assignment shorthand](#struct-literal-assignment-shorthand)
+### <a name="struct-literal-assignment-shorthand"></a>Struct literal assignment shorthand
 
 Speaking of: in a struct literal, when a field is set to a variable binding of the same name:
 
@@ -487,7 +487,7 @@ let p = Person { name };
 Tools like [clippy](https://doc.rust-lang.org/stable/clippy/usage.html) will suggest making those changes, and even apply the fix programmatically if you let it.
 
 
-### [Struct update syntax](#struct-update-syntax)
+### <a name="struct-update-syntax"></a>Struct update syntax
 
 There is a shortcut for initializing the _rest of the fields_ from another struct:
 
@@ -507,7 +507,7 @@ let v4 = Vec2 { ..v3 };
 ```
 
 
-### [Tuples](#tuples)
+### <a name="tuples"></a>Tuples
 
 Rust has tuples, which you can think of as "fixed-length collections of values of different types". Tuples are kind of “anonymous structs” were fields are also anonymous.
 
@@ -529,7 +529,7 @@ There's also the concept of _“Tuple Struct”_, which are _named_, like struct
 struct Foo(u32, u32);
 ```
 
-### [Enums (sum types)](#enums-sum-types)
+### <a name="enums-sum-types"></a>Enums (sum types)
 
 When you want to express `alternatives`, you can use enums.
 
@@ -570,7 +570,7 @@ enum IceCream{
 
 ```
 
-[Functions](#functions)
+<a name="functions"></a>Functions
 -----------------------
 
 `fn` declares a function.
@@ -603,7 +603,7 @@ For functions parameters and return value, the type must be written down explici
 
 And by convention, in Rust functions are spelled with _snake_case_: It's `fair_dice_roll()` not `fairDiceRoll()`.
 
-### [Passing argument by value or by reference](#values-and-reference)
+### <a name="values-and-reference"></a>Passing argument by value or by reference
 
 Unlike some other programming languages, Rust doesn't have an implicit “this kinds of things pass by values and these other passes by reference”, it must be spelled in the type of the parameter. References are written using the `&` symbol.
 
@@ -652,7 +652,7 @@ by_ref_mut(&mut y);
 
 ```
 
-### [Dereferencing](#dereferencing)
+### <a name="dereferencing"></a>Dereferencing
 
 To access an item behind a reference, you need to **dereference** it, with the `*` symbol:
 
@@ -662,7 +662,7 @@ fn foo(i: &mut u32){
 }
 ```
 
-### [Methods](#methods)
+### <a name="methods"></a>Methods
 
 You can declare methods on any of the types you've defined, be it a struct, an enum or a tupple struct (but not regular tuples, because you don't “define” them).
 
@@ -757,7 +757,7 @@ fn main(){
 
 Like any parameters of any function, the `self` parameter can be passed by value, by reference or by mutable reference.
 
-### [The `Self` type](#the-self-type)
+### <a name="the-self-type"></a>The `Self` type
 
 An `impl` block is always _for_ a type, so, inside that block, `Self` means that type:
 
@@ -778,7 +778,7 @@ impl ComplexNumber {
 ```
 
 
-[Blocks](#blocks)
+<a name="blocks"></a>Blocks
 -----------------
 
 A pair of brackets declares a block, which has its own scope:
@@ -798,7 +798,7 @@ fn main() {
 }
 ```
 
-### [Blocks are expressions](#blocks-are-expressions)
+### <a name="blocks-are-expressions"></a>Blocks are expressions
 
 Blocks are also expressions, which mean they evaluate to a value.
 
@@ -821,7 +821,7 @@ let x = {
 // here x is equal to 3
 ```
 
-### [Implicit return](#implicit-return)
+### <a name="implicit-return"></a>Implicit return
 
 Because blocks can return value, you don't need the `return` keyword at the end of a function either, these are equivalent:
 
@@ -835,7 +835,7 @@ fn fair_dice_roll() -> i32 {
 }
 ```
 
-### [Everything is an expression](#everything-is-an-expression)
+### <a name="everything-is-an-expression"></a>Everything is an expression
 
 `if` conditionals are also expressions:
 
@@ -869,10 +869,10 @@ fn fair_dice_roll(feeling_lucky: bool) -> i32 {
 ```
 
 
-[Patterns and destructuring](#patterns-and-destructuring)
+<a name="patterns-and-destructuring"></a>Patterns and destructuring
 ---------------------------------------------------------
 
-### [Destructuring tuples](#destructuring-tuples)
+### <a name="destructuring-tuples"></a>Destructuring tuples
 
 Tuples can be _destructured_ when doing an assignment, which means they're broken down into their individual fields:
 
@@ -893,7 +893,7 @@ Of course, when destructuring a tuple, `_` can be used to throw away part of it:
 let (_, right) = slice.split_at(middle);
 ```
 
-### [Destructuring structs](#destructuring-structs)
+### <a name="destructuring-structs"></a>Destructuring structs
 
 
 ```Rust
@@ -908,7 +908,7 @@ let Vec2 { x, .. } = v; // this throws away `v.y`
 ```
 
 
-### [Destructuring with `if let`](#destructuring-with-if-let)
+### <a name="destructuring-with-if-let"></a>Destructuring with `if let`
 
 Because enums have multiple variants, you cannot simply destructure like you'd do for struct. But `let` patterns can be used as conditions in `if`:
 
@@ -970,7 +970,7 @@ fn print_number(n: Number) {
 ```
 
 
-### [Match arms are patterns](#match-arms-are-patterns)
+### <a name="match-arms-are-patterns"></a>Match arms are patterns
 
 `match` arms are also patterns, just like `if let`:
 
@@ -986,7 +986,7 @@ fn print_all_flavor(i: IceCrean) {
 }
 ```
 
-[Macros](#macros)
+<a name="macros"></a>Macros
 -----------------
 
 Macros are kind of like functions, but with an exclamation mark at the end. Unlike functions, that aren't called at run time, with some parameters. They are **expanded** at compile time into normal code. Macros are being used to reduce boilerplate in repetitive code. 
@@ -1034,7 +1034,7 @@ By _convention_ macros that behaves like a simple function are being called with
 
 Using macros is very common, most of the time the macros come from the standard library (`println!`, `vec!`, `assert_eq!`, for example), but they can also come from a library or you can define your own, even though this is much rarer.
 
-### [The `println!` and `format!` macros](#the-println-and-format-macros)
+### <a name="the-println-and-format-macros"></a>The `println!` and `format!` macros
 
 For text formatting, there's a very common macro called `format!` which is internally being used in a lot of other macros, including the `println!` one that prints line to the terminal.
 
@@ -1061,7 +1061,7 @@ fn main(){
 
 ```
 
-### [The `panic!` macro](#the-panic-macro)
+### <a name="the-panic-macro"></a>The `panic!` macro
 
 `panic` is also a macro. It violently stops execution with an error message, and the file name / line number of the error, if enabled:
 
@@ -1072,7 +1072,7 @@ fn main() {
 // output: thread 'main' panicked at 'This panics', src/main.rs:3:5
 ```
 
-### [Functions that panic](#functions-that-panic)
+### <a name="functions-that-panic"></a>Functions that panic
 
 Some methods also panic. For example, the `Option` type can contain something, or it can contain nothing. If `.unwrap()` is called on it, and it contains nothing, it panics:
 
@@ -1088,10 +1088,10 @@ fn main() {
 // output: thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', src/libcore/option.rs:378:21
 ```
 
-[Generics](#generics)
+<a name="generics"></a>Generics
 ---------------------
 
-### [Generic structs](#generic-structs)
+### <a name="generic-structs"></a>Generic structs
 
 Structs can be generic, that is: they can exist in various forms, thanks to the generic (that is, variable) type they contain.
 
@@ -1132,7 +1132,7 @@ enum Result<T, E> {
 }
 ```
 
-### [Generic functions](#generic-functions)
+### <a name="generic-functions"></a>Generic functions
 
 Functions can also be generic:
 
@@ -1142,7 +1142,7 @@ fn foobar<T>(arg: T) {
 }
 ```
 
-### [Traits](#traits)
+### <a name="traits"></a>Traits
 
 Traits are the Rust equivalent of an “interface” in other languages, they are something multiple types can have in common:
 
@@ -1152,7 +1152,7 @@ trait Signed {
 }
 ```
 
-### [Type parameter constraints (trait bounds)](#type-parameter-constraints-trait-bounds)
+### <a name="type-parameter-constraints-trait-bounds"></a>Type parameter constraints (trait bounds)
 
 Generic type parameters usually have _constraints_, so you can actually do something with them.
 
@@ -1179,12 +1179,12 @@ fn print<T>(value: T) where T: Signed {
 The two syntaxes above are strictly equivalent, the first one is the most common for simple situation, and the second gets used when the traits constraints are getting hairier.
 
 
-[Modules](#modules)
+<a name="modules"></a>Modules
 --------------------------------------------
 
 Rust code is organised in _crates_(~ a library), which contains _modules_. Modules can be nested, so you have modules that belongs to other modules. The standard library is a _crate_, that's included by default in your projects, then there's the _crates_ you added as dependencies, and there's your own crate. All of these crates contains modules, that contains the types, traits and function you're going to use on your project.
 
-### [`use` syntax](#use-syntax)
+### <a name="use-syntax"></a>`use` syntax
 
 To use types and functions defined outside of your current model, like in the standard library or in your dependencies, you need to use their full namespace path to refer to them: In this example, `std` is the _crate_ , `cmp` is the _module_, and `min` is the _function_:
 
@@ -1226,7 +1226,7 @@ A wildcard (`*`) lets you import every symbol from a namespace:
 use std::cmp::*;
 ```
 
-### [The libstd prelude](#the-libstd-prelude)
+### <a name="the-libstd-prelude"></a>The libstd prelude
 
 `str` is a primitive type, but many non-primitive types are also in scope by default.
 
@@ -1245,7 +1245,7 @@ use std::prelude::v1::*;
 ```
 (Which in turns re-exports a lot of symbols, like `Vec`, `String`, `Option` and `Result`).
 
-### [Crates](#crates)
+### <a name="crates"></a>Crates
 
 Crates are the rust name for external libraries. They can be found on [crates.io](https://crates.io) or [lib.rs](lib.rs) (which is just an alternative front-end for crates.io).
 
