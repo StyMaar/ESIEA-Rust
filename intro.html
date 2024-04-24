@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <style>
+            /* PrismJS 1.29.0
+https://prismjs.com/download.html#themes=prism-tomorrow&languages=clike+javascript+rust */
+code[class*=language-],pre[class*=language-]{color:#ccc;background:0 0;font-family:Consolas,Monaco,'Andale Mono','Ubuntu Mono',monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:1em;margin:.5em 0;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background:#2d2d2d}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#999}.token.punctuation{color:#ccc}.token.attr-name,.token.deleted,.token.namespace,.token.tag{color:#e2777a}.token.function-name{color:#6196cc}.token.boolean,.token.function,.token.number{color:#f08d49}.token.class-name,.token.constant,.token.property,.token.symbol{color:#f8c555}.token.atrule,.token.builtin,.token.important,.token.keyword,.token.selector{color:#cc99cd}.token.attr-value,.token.char,.token.regex,.token.string,.token.variable{color:#7ec699}.token.entity,.token.operator,.token.url{color:#67cdcc}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.inserted{color:green}
+
+        </style>
+        <style>
+            @media (prefers-color-scheme: dark) {
+  .markdown-body {
+    color-scheme: dark;
+    --color-prettylights-syntax-comment: #8b949e;
+    --color-prettylights-syntax-constant: #79c0ff;
+    --color-prettylights-syntax-entity: #d2a8ff;
+    --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
+    --color-prettylights-syntax-entity-tag: #7ee787;
+    --color-prettylights-syntax-keyword: #ff7b72;
+    --color-prettylights-syntax-string: #a5d6ff;
+    --color-prettylights-syntax-variable: #ffa657;
+    --color-prettylights-syntax-brackethighlighter-unmatched: #f85149;
+    --color-prettylights-syntax-invalid-illegal-text: #f0f6fc;
+    --color-prettylights-syntax-invalid-illegal-bg: #8e1519;
+    --color-prettylights-syntax-carriage-return-text: #f0f6fc;
+    --color-prettylights-syntax-carriage-return-bg: #b62324;
+    --color-prettylights-syntax-string-regexp: #7ee787;
+    --color-prettylights-syntax-markup-list: #f2cc60;
+    --color-prettylights-syntax-markup-heading: #1f6feb;
+    --color-prettylights-syntax-markup-italic: #c9d1d9;
+    --color-prettylights-syntax-markup-bold: #c9d1d9;
+    --color-prettylights-syntax-markup-deleted-text: #ffdcd7;
+    --color-prettylights-syntax-markup-deleted-bg: #67060c;
+    --color-prettylights-syntax-markup-inserted-text: #aff5b4;
+    --color-prettylights-syntax-markup-inserted-bg: #033a16;
+    --color-prettylights-syntax-markup-changed-text: #ffdfb6;
+    --color-prettylights-syntax-markup-changed-bg: #5a1e02;
+    --color-prettylights-syntax-markup-ignored-text: #c9d1d9;
+    --color-prettylights-syntax-markup-ignored-bg: #1158c7;
+    --color-prettylights-syntax-meta-diff-range: #d2a8ff;
+    --color-prettylights-syntax-brackethighlighter-angle: #8b949e;
+    --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58;
+    --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
+    --color-fg-default: #c9d1d9;
+    --color-fg-muted: #8b949e;
+    --color-fg-subtle: #484f58;
+    --color-canvas-default: #0d1117;
+    --color-canvas-subtle: #161b22;
+    --color-border-default: #30363d;
+    --color-border-muted: #21262d;
+    --color-neutral-muted: rgba(110,118,129,0.4);
+    --color-accent-fg: #58a6ff;
+    --color-accent-emphasis: #1f6feb;
+    --color-attention-subtle: rgba(187,128,9,0.15);
+    --color-danger-fg: #f85149;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .markdown-body {
+    color-scheme: light;
+    --color-prettylights-syntax-comment: #6e7781;
+    --color-prettylights-syntax-constant: #0550ae;
+    --color-prettylights-syntax-entity: #8250df;
+    --color-prettylights-syntax-storage-modifier-import: #24292f;
+    --color-prettylights-syntax-entity-tag: #116329;
+    --color-prettylights-syntax-keyword: #cf222e;
+    --color-prettylights-syntax-string: #0a3069;
+    --color-prettylights-syntax-variable: #953800;
+    --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
+    --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
+    --color-prettylights-syntax-invalid-illegal-bg: #82071e;
+    --color-prettylights-syntax-carriage-return-text: #f6f8fa;
+    --color-prettylights-syntax-carriage-return-bg: #cf222e;
+    --color-prettylights-syntax-string-regexp: #116329;
+    --color-prettylights-syntax-markup-list: #3b2300;
+    --color-prettylights-syntax-markup-heading: #0550ae;
+    --color-prettylights-syntax-markup-italic: #24292f;
+    --color-prettylights-syntax-markup-bold: #24292f;
+    --color-prettylights-syntax-markup-deleted-text: #82071e;
+    --color-prettylights-syntax-markup-deleted-bg: #FFEBE9;
+    --color-prettylights-syntax-markup-inserted-text: #116329;
+    --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
+    --color-prettylights-syntax-markup-changed-text: #953800;
+    --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
+    --color-prettylights-syntax-markup-ignored-text: #eaeef2;
+    --color-prettylights-syntax-markup-ignored-bg: #0550ae;
+    --color-prettylights-syntax-meta-diff-range: #8250df;
+    --color-prettylights-syntax-brackethighlighter-angle: #57606a;
+    --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
+    --color-prettylights-syntax-constant-other-reference-link: #0a3069;
+    --color-fg-default: #24292f;
+    --color-fg-muted: #57606a;
+    --color-fg-subtle: #6e7781;
+    --color-canvas-default: #ffffff;
+    --color-canvas-subtle: #f6f8fa;
+    --color-border-default: #d0d7de;
+    --color-border-muted: hsla(210,18%,87%,1);
+    --color-neutral-muted: rgba(175,184,193,0.2);
+    --color-accent-fg: #0969da;
+    --color-accent-emphasis: #0969da;
+    --color-attention-subtle: #fff8c5;
+    --color-danger-fg: #cf222e;
+  }
+}
+
+.markdown-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  margin: 0px 15%;
+  color: var(--color-fg-default);
+  background-color: var(--color-canvas-default);
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+
+.markdown-body .octicon {
+  display: inline-block;
+  fill: currentColor;
+  vertical-align: text-bottom;
+}
+
+.markdown-body h1:hover .anchor .octicon-link:before,
+.markdown-body h2:hover .anchor .octicon-link:before,
+.markdown-body h3:hover .anchor .octicon-link:before,
+.markdown-body h4:hover .anchor .octicon-link:before,
+.markdown-body h5:hover .anchor .octicon-link:before,
+.markdown-body h6:hover .anchor .octicon-link:before {
+  width: 16px;
+  height: 16px;
+  content: ' ';
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+}
+
+.markdown-body details,
+.markdown-body figcaption,
+.markdown-body figure {
+  display: block;
+}
+
+.markdown-body summary {
+  display: list-item;
+}
+
+.markdown-body [hidden] {
+  display: none !important;
+}
+
+.markdown-body a {
+  background-color: transparent;
+  color: var(--color-accent-fg);
+  text-decoration: none;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline-width: 0;
+}
+
+.markdown-body abbr[title] {
+  border-bottom: none;
+  text-decoration: underline dotted;
+}
+
+.markdown-body b,
+.markdown-body strong {
+  font-weight: 600;
+}
+
+.markdown-body dfn {
+  font-style: italic;
+}
+
+.markdown-body h1 {
+  margin: .67em 0;
+  font-weight: 600;
+  padding-bottom: .3em;
+  font-size: 2em;
+  border-bottom: 1px solid var(--color-border-muted);
+}
+
+.markdown-body mark {
+  background-color: var(--color-attention-subtle);
+  color: var(--color-text-primary);
+}
+
+.markdown-body small {
+  font-size: 90%;
+}
+
+.markdown-body sub,
+.markdown-body sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+.markdown-body sub {
+  bottom: -0.25em;
+}
+
+.markdown-body sup {
+  top: -0.5em;
+}
+
+.markdown-body img {
+  border-style: none;
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: var(--color-canvas-default);
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre,
+.markdown-body samp {
+  font-family: monospace,monospace;
+  font-size: 1em;
+}
+
+.markdown-body figure {
+  margin: 1em 40px;
+}
+
+.markdown-body hr {
+  box-sizing: content-box;
+  overflow: hidden;
+  background: transparent;
+  border-bottom: 1px solid var(--color-border-muted);
+  height: .25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: var(--color-border-default);
+  border: 0;
+}
+
+.markdown-body input {
+  font: inherit;
+  margin: 0;
+  overflow: visible;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.markdown-body [type=button],
+.markdown-body [type=reset],
+.markdown-body [type=submit] {
+  -webkit-appearance: button;
+}
+
+.markdown-body [type=button]::-moz-focus-inner,
+.markdown-body [type=reset]::-moz-focus-inner,
+.markdown-body [type=submit]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+.markdown-body [type=button]:-moz-focusring,
+.markdown-body [type=reset]:-moz-focusring,
+.markdown-body [type=submit]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+.markdown-body [type=checkbox],
+.markdown-body [type=radio] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body [type=number]::-webkit-inner-spin-button,
+.markdown-body [type=number]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+.markdown-body [type=search] {
+  -webkit-appearance: textfield;
+  outline-offset: -2px;
+}
+
+.markdown-body [type=search]::-webkit-search-cancel-button,
+.markdown-body [type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+.markdown-body ::-webkit-input-placeholder {
+  color: inherit;
+  opacity: .54;
+}
+
+.markdown-body ::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body hr::before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  display: block;
+  width: max-content;
+  max-width: 100%;
+  overflow: auto;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body details summary {
+  cursor: pointer;
+}
+
+.markdown-body details:not([open])>*:not(summary) {
+  display: none !important;
+}
+
+.markdown-body kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  line-height: 10px;
+  color: var(--color-fg-default);
+  vertical-align: middle;
+  background-color: var(--color-canvas-subtle);
+  border: solid 1px var(--color-neutral-muted);
+  border-bottom-color: var(--color-neutral-muted);
+  border-radius: 6px;
+  box-shadow: inset 0 -1px 0 var(--color-neutral-muted);
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.markdown-body h2 {
+  font-weight: 600;
+  padding-bottom: .3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid var(--color-border-muted);
+}
+
+.markdown-body h3 {
+  font-weight: 600;
+  font-size: 1.25em;
+}
+
+.markdown-body h4 {
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.markdown-body h5 {
+  font-weight: 600;
+  font-size: .875em;
+}
+
+.markdown-body h6 {
+  font-weight: 600;
+  font-size: .85em;
+  color: var(--color-fg-muted);
+}
+
+.markdown-body p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+  padding: 0 1em;
+  color: var(--color-fg-muted);
+  border-left: .25em solid var(--color-border-default);
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 2em;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body tt,
+.markdown-body code {
+  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  font-size: 12px;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  font-size: 12px;
+  word-wrap: normal;
+}
+
+.markdown-body .octicon {
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-body ::placeholder {
+  color: var(--color-fg-subtle);
+  opacity: 1;
+}
+
+.markdown-body input::-webkit-outer-spin-button,
+.markdown-body input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.markdown-body .pl-c {
+  color: var(--color-prettylights-syntax-comment);
+}
+
+.markdown-body .pl-c1,
+.markdown-body .pl-s .pl-v {
+  color: var(--color-prettylights-syntax-constant);
+}
+
+.markdown-body .pl-e,
+.markdown-body .pl-en {
+  color: var(--color-prettylights-syntax-entity);
+}
+
+.markdown-body .pl-smi,
+.markdown-body .pl-s .pl-s1 {
+  color: var(--color-prettylights-syntax-storage-modifier-import);
+}
+
+.markdown-body .pl-ent {
+  color: var(--color-prettylights-syntax-entity-tag);
+}
+
+.markdown-body .pl-k {
+  color: var(--color-prettylights-syntax-keyword);
+}
+
+.markdown-body .pl-s,
+.markdown-body .pl-pds,
+.markdown-body .pl-s .pl-pse .pl-s1,
+.markdown-body .pl-sr,
+.markdown-body .pl-sr .pl-cce,
+.markdown-body .pl-sr .pl-sre,
+.markdown-body .pl-sr .pl-sra {
+  color: var(--color-prettylights-syntax-string);
+}
+
+.markdown-body .pl-v,
+.markdown-body .pl-smw {
+  color: var(--color-prettylights-syntax-variable);
+}
+
+.markdown-body .pl-bu {
+  color: var(--color-prettylights-syntax-brackethighlighter-unmatched);
+}
+
+.markdown-body .pl-ii {
+  color: var(--color-prettylights-syntax-invalid-illegal-text);
+  background-color: var(--color-prettylights-syntax-invalid-illegal-bg);
+}
+
+.markdown-body .pl-c2 {
+  color: var(--color-prettylights-syntax-carriage-return-text);
+  background-color: var(--color-prettylights-syntax-carriage-return-bg);
+}
+
+.markdown-body .pl-sr .pl-cce {
+  font-weight: bold;
+  color: var(--color-prettylights-syntax-string-regexp);
+}
+
+.markdown-body .pl-ml {
+  color: var(--color-prettylights-syntax-markup-list);
+}
+
+.markdown-body .pl-mh,
+.markdown-body .pl-mh .pl-en,
+.markdown-body .pl-ms {
+  font-weight: bold;
+  color: var(--color-prettylights-syntax-markup-heading);
+}
+
+.markdown-body .pl-mi {
+  font-style: italic;
+  color: var(--color-prettylights-syntax-markup-italic);
+}
+
+.markdown-body .pl-mb {
+  font-weight: bold;
+  color: var(--color-prettylights-syntax-markup-bold);
+}
+
+.markdown-body .pl-md {
+  color: var(--color-prettylights-syntax-markup-deleted-text);
+  background-color: var(--color-prettylights-syntax-markup-deleted-bg);
+}
+
+.markdown-body .pl-mi1 {
+  color: var(--color-prettylights-syntax-markup-inserted-text);
+  background-color: var(--color-prettylights-syntax-markup-inserted-bg);
+}
+
+.markdown-body .pl-mc {
+  color: var(--color-prettylights-syntax-markup-changed-text);
+  background-color: var(--color-prettylights-syntax-markup-changed-bg);
+}
+
+.markdown-body .pl-mi2 {
+  color: var(--color-prettylights-syntax-markup-ignored-text);
+  background-color: var(--color-prettylights-syntax-markup-ignored-bg);
+}
+
+.markdown-body .pl-mdr {
+  font-weight: bold;
+  color: var(--color-prettylights-syntax-meta-diff-range);
+}
+
+.markdown-body .pl-ba {
+  color: var(--color-prettylights-syntax-brackethighlighter-angle);
+}
+
+.markdown-body .pl-sg {
+  color: var(--color-prettylights-syntax-sublimelinter-gutter-mark);
+}
+
+.markdown-body .pl-corl {
+  text-decoration: underline;
+  color: var(--color-prettylights-syntax-constant-other-reference-link);
+}
+
+.markdown-body [data-catalyst] {
+  display: block;
+}
+
+.markdown-body g-emoji {
+  font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 1em;
+  font-style: normal !important;
+  font-weight: 400;
+  line-height: 1;
+  vertical-align: -0.075em;
+}
+
+.markdown-body g-emoji img {
+  width: 1em;
+  height: 1em;
+}
+
+.markdown-body::before {
+  display: table;
+  content: "";
+}
+
+.markdown-body::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.markdown-body .absent {
+  color: var(--color-danger-fg);
+}
+
+.markdown-body .anchor {
+  float: left;
+  padding-right: 4px;
+  margin-left: -20px;
+  line-height: 1;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre,
+.markdown-body details {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body sup>a::before {
+  content: "[";
+}
+
+.markdown-body sup>a::after {
+  content: "]";
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  color: var(--color-fg-default);
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  visibility: visible;
+}
+
+.markdown-body h1 tt,
+.markdown-body h1 code,
+.markdown-body h2 tt,
+.markdown-body h2 code,
+.markdown-body h3 tt,
+.markdown-body h3 code,
+.markdown-body h4 tt,
+.markdown-body h4 code,
+.markdown-body h5 tt,
+.markdown-body h5 code,
+.markdown-body h6 tt,
+.markdown-body h6 code {
+  padding: 0 .2em;
+  font-size: inherit;
+}
+
+.markdown-body ul.no-list,
+.markdown-body ol.no-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.markdown-body ol[type="1"] {
+  list-style-type: decimal;
+}
+
+.markdown-body ol[type=a] {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body ol[type=i] {
+  list-style-type: lower-roman;
+}
+
+.markdown-body div>ol:not([type]) {
+  list-style-type: decimal;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body li+li {
+  margin-top: .25em;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body table th {
+  font-weight: 600;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid var(--color-border-default);
+}
+
+.markdown-body table tr {
+  background-color: var(--color-canvas-default);
+  border-top: 1px solid var(--color-border-muted);
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: var(--color-canvas-subtle);
+}
+
+.markdown-body table img {
+  background-color: transparent;
+}
+
+.markdown-body img[align=right] {
+  padding-left: 20px;
+}
+
+.markdown-body img[align=left] {
+  padding-right: 20px;
+}
+
+.markdown-body .emoji {
+  max-width: none;
+  vertical-align: text-top;
+  background-color: transparent;
+}
+
+.markdown-body span.frame {
+  display: block;
+  overflow: hidden;
+}
+
+.markdown-body span.frame>span {
+  display: block;
+  float: left;
+  width: auto;
+  padding: 7px;
+  margin: 13px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border-default);
+}
+
+.markdown-body span.frame span img {
+  display: block;
+  float: left;
+}
+
+.markdown-body span.frame span span {
+  display: block;
+  padding: 5px 0 0;
+  clear: both;
+  color: var(--color-fg-default);
+}
+
+.markdown-body span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+.markdown-body span.align-center>span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.markdown-body span.align-center span img {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.markdown-body span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+
+.markdown-body span.align-right>span {
+  display: block;
+  margin: 13px 0 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+.markdown-body span.align-right span img {
+  margin: 0;
+  text-align: right;
+}
+
+.markdown-body span.float-left {
+  display: block;
+  float: left;
+  margin-right: 13px;
+  overflow: hidden;
+}
+
+.markdown-body span.float-left span {
+  margin: 13px 0 0;
+}
+
+.markdown-body span.float-right {
+  display: block;
+  float: right;
+  margin-left: 13px;
+  overflow: hidden;
+}
+
+.markdown-body span.float-right>span {
+  display: block;
+  margin: 13px auto 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+.markdown-body code,
+.markdown-body tt {
+  padding: .2em .4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: var(--color-neutral-muted);
+  border-radius: 6px;
+}
+
+.markdown-body code br,
+.markdown-body tt br {
+  display: none;
+}
+
+.markdown-body del code {
+  text-decoration: inherit;
+}
+
+.markdown-body pre code {
+  font-size: 100%;
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  /* background-color: var(--color-canvas-subtle); */
+  border-radius: 6px;
+}
+
+.markdown-body pre code,
+.markdown-body pre tt {
+  display: inline;
+  max-width: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body .csv-data td,
+.markdown-body .csv-data th {
+  padding: 5px;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.markdown-body .csv-data .blob-num {
+  padding: 10px 8px 9px;
+  text-align: right;
+  background: var(--color-canvas-default);
+  border: 0;
+}
+
+.markdown-body .csv-data tr {
+  border-top: 0;
+}
+
+.markdown-body .csv-data th {
+  font-weight: 600;
+  background: var(--color-canvas-subtle);
+  border-top: 0;
+}
+
+.markdown-body .footnotes {
+  font-size: 12px;
+  color: var(--color-fg-muted);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.markdown-body .footnotes ol {
+  padding-left: 16px;
+}
+
+.markdown-body .footnotes li {
+  position: relative;
+}
+
+.markdown-body .footnotes li:target::before {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  bottom: -8px;
+  left: -24px;
+  pointer-events: none;
+  content: "";
+  border: 2px solid var(--color-accent-emphasis);
+  border-radius: 6px;
+}
+
+.markdown-body .footnotes li:target {
+  color: var(--color-fg-default);
+}
+
+.markdown-body .footnotes .data-footnote-backref g-emoji {
+  font-family: monospace;
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item label {
+  font-weight: 400;
+}
+
+.markdown-body .task-list-item.enabled label {
+  cursor: pointer;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item .handle {
+  display: none;
+}
+
+.markdown-body .task-list-item-checkbox {
+  margin: 0 .2em .25em -1.6em;
+  vertical-align: middle;
+}
+
+.markdown-body .contains-task-list:dir(rtl) .task-list-item-checkbox {
+  margin: 0 -1.6em .25em .2em;
+}
+
+.markdown-body ::-webkit-calendar-picker-indicator {
+  filter: invert(50%);
+}
+
+        </style>
+	</head>
+	<body lang="fr-FR">
+        <script>
+            /* PrismJS 1.29.0
+https://prismjs.com/download.html#themes=prism-tomorrow&languages=clike+javascript+rust */
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(e){var n=/(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i,t=0,r={},a={manual:e.Prism&&e.Prism.manual,disableWorkerMessageHandler:e.Prism&&e.Prism.disableWorkerMessageHandler,util:{encode:function e(n){return n instanceof i?new i(n.type,e(n.content),n.alias):Array.isArray(n)?n.map(e):n.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).slice(8,-1)},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function e(n,t){var r,i;switch(t=t||{},a.util.type(n)){case"Object":if(i=a.util.objId(n),t[i])return t[i];for(var l in r={},t[i]=r,n)n.hasOwnProperty(l)&&(r[l]=e(n[l],t));return r;case"Array":return i=a.util.objId(n),t[i]?t[i]:(r=[],t[i]=r,n.forEach((function(n,a){r[a]=e(n,t)})),r);default:return n}},getLanguage:function(e){for(;e;){var t=n.exec(e.className);if(t)return t[1].toLowerCase();e=e.parentElement}return"none"},setLanguage:function(e,t){e.className=e.className.replace(RegExp(n,"gi"),""),e.classList.add("language-"+t)},currentScript:function(){if("undefined"==typeof document)return null;if("currentScript"in document)return document.currentScript;try{throw new Error}catch(r){var e=(/at [^(\r\n]*\((.*):[^:]+:[^:]+\)$/i.exec(r.stack)||[])[1];if(e){var n=document.getElementsByTagName("script");for(var t in n)if(n[t].src==e)return n[t]}return null}},isActive:function(e,n,t){for(var r="no-"+n;e;){var a=e.classList;if(a.contains(n))return!0;if(a.contains(r))return!1;e=e.parentElement}return!!t}},languages:{plain:r,plaintext:r,text:r,txt:r,extend:function(e,n){var t=a.util.clone(a.languages[e]);for(var r in n)t[r]=n[r];return t},insertBefore:function(e,n,t,r){var i=(r=r||a.languages)[e],l={};for(var o in i)if(i.hasOwnProperty(o)){if(o==n)for(var s in t)t.hasOwnProperty(s)&&(l[s]=t[s]);t.hasOwnProperty(o)||(l[o]=i[o])}var u=r[e];return r[e]=l,a.languages.DFS(a.languages,(function(n,t){t===u&&n!=e&&(this[n]=l)})),l},DFS:function e(n,t,r,i){i=i||{};var l=a.util.objId;for(var o in n)if(n.hasOwnProperty(o)){t.call(n,o,n[o],r||o);var s=n[o],u=a.util.type(s);"Object"!==u||i[l(s)]?"Array"!==u||i[l(s)]||(i[l(s)]=!0,e(s,t,o,i)):(i[l(s)]=!0,e(s,t,null,i))}}},plugins:{},highlightAll:function(e,n){a.highlightAllUnder(document,e,n)},highlightAllUnder:function(e,n,t){var r={callback:t,container:e,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};a.hooks.run("before-highlightall",r),r.elements=Array.prototype.slice.apply(r.container.querySelectorAll(r.selector)),a.hooks.run("before-all-elements-highlight",r);for(var i,l=0;i=r.elements[l++];)a.highlightElement(i,!0===n,r.callback)},highlightElement:function(n,t,r){var i=a.util.getLanguage(n),l=a.languages[i];a.util.setLanguage(n,i);var o=n.parentElement;o&&"pre"===o.nodeName.toLowerCase()&&a.util.setLanguage(o,i);var s={element:n,language:i,grammar:l,code:n.textContent};function u(e){s.highlightedCode=e,a.hooks.run("before-insert",s),s.element.innerHTML=s.highlightedCode,a.hooks.run("after-highlight",s),a.hooks.run("complete",s),r&&r.call(s.element)}if(a.hooks.run("before-sanity-check",s),(o=s.element.parentElement)&&"pre"===o.nodeName.toLowerCase()&&!o.hasAttribute("tabindex")&&o.setAttribute("tabindex","0"),!s.code)return a.hooks.run("complete",s),void(r&&r.call(s.element));if(a.hooks.run("before-highlight",s),s.grammar)if(t&&e.Worker){var c=new Worker(a.filename);c.onmessage=function(e){u(e.data)},c.postMessage(JSON.stringify({language:s.language,code:s.code,immediateClose:!0}))}else u(a.highlight(s.code,s.grammar,s.language));else u(a.util.encode(s.code))},highlight:function(e,n,t){var r={code:e,grammar:n,language:t};if(a.hooks.run("before-tokenize",r),!r.grammar)throw new Error('The language "'+r.language+'" has no grammar.');return r.tokens=a.tokenize(r.code,r.grammar),a.hooks.run("after-tokenize",r),i.stringify(a.util.encode(r.tokens),r.language)},tokenize:function(e,n){var t=n.rest;if(t){for(var r in t)n[r]=t[r];delete n.rest}var a=new s;return u(a,a.head,e),o(e,a,n,a.head,0),function(e){for(var n=[],t=e.head.next;t!==e.tail;)n.push(t.value),t=t.next;return n}(a)},hooks:{all:{},add:function(e,n){var t=a.hooks.all;t[e]=t[e]||[],t[e].push(n)},run:function(e,n){var t=a.hooks.all[e];if(t&&t.length)for(var r,i=0;r=t[i++];)r(n)}},Token:i};function i(e,n,t,r){this.type=e,this.content=n,this.alias=t,this.length=0|(r||"").length}function l(e,n,t,r){e.lastIndex=n;var a=e.exec(t);if(a&&r&&a[1]){var i=a[1].length;a.index+=i,a[0]=a[0].slice(i)}return a}function o(e,n,t,r,s,g){for(var f in t)if(t.hasOwnProperty(f)&&t[f]){var h=t[f];h=Array.isArray(h)?h:[h];for(var d=0;d<h.length;++d){if(g&&g.cause==f+","+d)return;var v=h[d],p=v.inside,m=!!v.lookbehind,y=!!v.greedy,k=v.alias;if(y&&!v.pattern.global){var x=v.pattern.toString().match(/[imsuy]*$/)[0];v.pattern=RegExp(v.pattern.source,x+"g")}for(var b=v.pattern||v,w=r.next,A=s;w!==n.tail&&!(g&&A>=g.reach);A+=w.value.length,w=w.next){var E=w.value;if(n.length>e.length)return;if(!(E instanceof i)){var P,L=1;if(y){if(!(P=l(b,A,e,m))||P.index>=e.length)break;var S=P.index,O=P.index+P[0].length,j=A;for(j+=w.value.length;S>=j;)j+=(w=w.next).value.length;if(A=j-=w.value.length,w.value instanceof i)continue;for(var C=w;C!==n.tail&&(j<O||"string"==typeof C.value);C=C.next)L++,j+=C.value.length;L--,E=e.slice(A,j),P.index-=A}else if(!(P=l(b,0,E,m)))continue;S=P.index;var N=P[0],_=E.slice(0,S),M=E.slice(S+N.length),W=A+E.length;g&&W>g.reach&&(g.reach=W);var z=w.prev;if(_&&(z=u(n,z,_),A+=_.length),c(n,z,L),w=u(n,z,new i(f,p?a.tokenize(N,p):N,k,N)),M&&u(n,w,M),L>1){var I={cause:f+","+d,reach:W};o(e,n,t,w.prev,A,I),g&&I.reach>g.reach&&(g.reach=I.reach)}}}}}}function s(){var e={value:null,prev:null,next:null},n={value:null,prev:e,next:null};e.next=n,this.head=e,this.tail=n,this.length=0}function u(e,n,t){var r=n.next,a={value:t,prev:n,next:r};return n.next=a,r.prev=a,e.length++,a}function c(e,n,t){for(var r=n.next,a=0;a<t&&r!==e.tail;a++)r=r.next;n.next=r,r.prev=n,e.length-=a}if(e.Prism=a,i.stringify=function e(n,t){if("string"==typeof n)return n;if(Array.isArray(n)){var r="";return n.forEach((function(n){r+=e(n,t)})),r}var i={type:n.type,content:e(n.content,t),tag:"span",classes:["token",n.type],attributes:{},language:t},l=n.alias;l&&(Array.isArray(l)?Array.prototype.push.apply(i.classes,l):i.classes.push(l)),a.hooks.run("wrap",i);var o="";for(var s in i.attributes)o+=" "+s+'="'+(i.attributes[s]||"").replace(/"/g,"&quot;")+'"';return"<"+i.tag+' class="'+i.classes.join(" ")+'"'+o+">"+i.content+"</"+i.tag+">"},!e.document)return e.addEventListener?(a.disableWorkerMessageHandler||e.addEventListener("message",(function(n){var t=JSON.parse(n.data),r=t.language,i=t.code,l=t.immediateClose;e.postMessage(a.highlight(i,a.languages[r],r)),l&&e.close()}),!1),a):a;var g=a.util.currentScript();function f(){a.manual||a.highlightAll()}if(g&&(a.filename=g.src,g.hasAttribute("data-manual")&&(a.manual=!0)),!a.manual){var h=document.readyState;"loading"===h||"interactive"===h&&g&&g.defer?document.addEventListener("DOMContentLoaded",f):window.requestAnimationFrame?window.requestAnimationFrame(f):window.setTimeout(f,16)}return a}(_self);"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,lookbehind:!0,greedy:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0,greedy:!0}],string:{pattern:/(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/(\b(?:class|extends|implements|instanceof|interface|new|trait)\s+|\bcatch\s+\()[\w.\\]+/i,lookbehind:!0,inside:{punctuation:/[.\\]/}},keyword:/\b(?:break|catch|continue|do|else|finally|for|function|if|in|instanceof|new|null|return|throw|try|while)\b/,boolean:/\b(?:false|true)\b/,function:/\b\w+(?=\()/,number:/\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,operator:/[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,punctuation:/[{}[\];(),.:]/};
+Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.languages.clike["class-name"],{pattern:/(^|[^$\w\xA0-\uFFFF])(?!\s)[_$A-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\.(?:constructor|prototype))/,lookbehind:!0}],keyword:[{pattern:/((?:^|\})\s*)catch\b/,lookbehind:!0},{pattern:/(^|[^.]|\.\.\.\s*)\b(?:as|assert(?=\s*\{)|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[#\[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,lookbehind:!0}],function:/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,number:{pattern:RegExp("(^|[^\\w$])(?:NaN|Infinity|0[bB][01]+(?:_[01]+)*n?|0[oO][0-7]+(?:_[0-7]+)*n?|0[xX][\\dA-Fa-f]+(?:_[\\dA-Fa-f]+)*n?|\\d+(?:_\\d+)*n|(?:\\d+(?:_\\d+)*(?:\\.(?:\\d+(?:_\\d+)*)?)?|\\.\\d+(?:_\\d+)*)(?:[Ee][+-]?\\d+(?:_\\d+)*)?)(?![\\w$])"),lookbehind:!0},operator:/--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/}),Prism.languages.javascript["class-name"][0].pattern=/(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/,Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:RegExp("((?:^|[^$\\w\\xA0-\\uFFFF.\"'\\])\\s]|\\b(?:return|yield))\\s*)/(?:(?:\\[(?:[^\\]\\\\\r\n]|\\\\.)*\\]|\\\\.|[^/\\\\\\[\r\n])+/[dgimyus]{0,7}|(?:\\[(?:[^[\\]\\\\\r\n]|\\\\.|\\[(?:[^[\\]\\\\\r\n]|\\\\.|\\[(?:[^[\\]\\\\\r\n]|\\\\.)*\\])*\\])*\\]|\\\\.|[^/\\\\\\[\r\n])+/[dgimyus]{0,7}v[dgimyus]{0,7})(?=(?:\\s|/\\*(?:[^*]|\\*(?!/))*\\*/)*(?:$|[\r\n,.;:})\\]]|//))"),lookbehind:!0,greedy:!0,inside:{"regex-source":{pattern:/^(\/)[\s\S]+(?=\/[a-z]*$)/,lookbehind:!0,alias:"language-regex",inside:Prism.languages.regex},"regex-delimiter":/^\/|\/$/,"regex-flags":/^[a-z]+$/}},"function-variable":{pattern:/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,alias:"function"},parameter:[{pattern:/(function(?:\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)?\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\))/,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/(^|[^$\w\xA0-\uFFFF])(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/,lookbehind:!0,inside:Prism.languages.javascript},{pattern:/((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,lookbehind:!0,inside:Prism.languages.javascript}],constant:/\b[A-Z](?:[A-Z_]|\dx?)*\b/}),Prism.languages.insertBefore("javascript","string",{hashbang:{pattern:/^#!.*/,greedy:!0,alias:"comment"},"template-string":{pattern:/`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,greedy:!0,inside:{"template-punctuation":{pattern:/^`|`$/,alias:"string"},interpolation:{pattern:/((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,lookbehind:!0,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}},"string-property":{pattern:/((?:^|[,{])[ \t]*)(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2(?=\s*:)/m,lookbehind:!0,greedy:!0,alias:"property"}}),Prism.languages.insertBefore("javascript","operator",{"literal-property":{pattern:/((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,lookbehind:!0,alias:"property"}}),Prism.languages.markup&&(Prism.languages.markup.tag.addInlined("script","javascript"),Prism.languages.markup.tag.addAttribute("on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)","javascript")),Prism.languages.js=Prism.languages.javascript;
+!function(e){for(var a="/\\*(?:[^*/]|\\*(?!/)|/(?!\\*)|<self>)*\\*/",t=0;t<2;t++)a=a.replace(/<self>/g,(function(){return a}));a=a.replace(/<self>/g,(function(){return"[^\\s\\S]"})),e.languages.rust={comment:[{pattern:RegExp("(^|[^\\\\])"+a),lookbehind:!0,greedy:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0,greedy:!0}],string:{pattern:/b?"(?:\\[\s\S]|[^\\"])*"|b?r(#*)"(?:[^"]|"(?!\1))*"\1/,greedy:!0},char:{pattern:/b?'(?:\\(?:x[0-7][\da-fA-F]|u\{(?:[\da-fA-F]_*){1,6}\}|.)|[^\\\r\n\t'])'/,greedy:!0},attribute:{pattern:/#!?\[(?:[^\[\]"]|"(?:\\[\s\S]|[^\\"])*")*\]/,greedy:!0,alias:"attr-name",inside:{string:null}},"closure-params":{pattern:/([=(,:]\s*|\bmove\s*)\|[^|]*\||\|[^|]*\|(?=\s*(?:\{|->))/,lookbehind:!0,greedy:!0,inside:{"closure-punctuation":{pattern:/^\||\|$/,alias:"punctuation"},rest:null}},"lifetime-annotation":{pattern:/'\w+/,alias:"symbol"},"fragment-specifier":{pattern:/(\$\w+:)[a-z]+/,lookbehind:!0,alias:"punctuation"},variable:/\$\w+/,"function-definition":{pattern:/(\bfn\s+)\w+/,lookbehind:!0,alias:"function"},"type-definition":{pattern:/(\b(?:enum|struct|trait|type|union)\s+)\w+/,lookbehind:!0,alias:"class-name"},"module-declaration":[{pattern:/(\b(?:crate|mod)\s+)[a-z][a-z_\d]*/,lookbehind:!0,alias:"namespace"},{pattern:/(\b(?:crate|self|super)\s*)::\s*[a-z][a-z_\d]*\b(?:\s*::(?:\s*[a-z][a-z_\d]*\s*::)*)?/,lookbehind:!0,alias:"namespace",inside:{punctuation:/::/}}],keyword:[/\b(?:Self|abstract|as|async|await|become|box|break|const|continue|crate|do|dyn|else|enum|extern|final|fn|for|if|impl|in|let|loop|macro|match|mod|move|mut|override|priv|pub|ref|return|self|static|struct|super|trait|try|type|typeof|union|unsafe|unsized|use|virtual|where|while|yield)\b/,/\b(?:bool|char|f(?:32|64)|[ui](?:8|16|32|64|128|size)|str)\b/],function:/\b[a-z_]\w*(?=\s*(?:::\s*<|\())/,macro:{pattern:/\b\w+!/,alias:"property"},constant:/\b[A-Z_][A-Z_\d]+\b/,"class-name":/\b[A-Z]\w*\b/,namespace:{pattern:/(?:\b[a-z][a-z_\d]*\s*::\s*)*\b[a-z][a-z_\d]*\s*::(?!\s*<)/,inside:{punctuation:/::/}},number:/\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0o[0-7](?:_?[0-7])*|0b[01](?:_?[01])*|(?:(?:\d(?:_?\d)*)?\.)?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)(?:_?(?:f32|f64|[iu](?:8|16|32|64|size)?))?\b/,boolean:/\b(?:false|true)\b/,punctuation:/->|\.\.=|\.{1,3}|::|[{}[\];(),:]/,operator:/[-+*\/%!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?=?|[@?]/},e.languages.rust["closure-params"].inside.rest=e.languages.rust,e.languages.rust.attribute.inside.string=e.languages.rust.string}(Prism);
+
+        </script>
+        <div class="markdown-body">
+    <h1>Introduction to the Rust syntax</h1>
+<p><em>note</em> this document took <strong>heavy</strong> inspiration (with lots of copy-paste) from Fasterthanlime's <a href="https://fasterthanli.me/articles/a-half-hour-to-learn-rust">Half hour to learn Rust</a>.</p>
+<h2>Contents</h2>
+<ul>
+<li><a href="#variable-bindings">Variable bindings</a>
+<ul>
+<li><a href="#the-let-keyword">The <code>let</code> keyword</a></li>
+<li><a href="#uninitialized-variables">Uninitialized variables</a></li>
+<li><a href="#type-annotation">Type annotation</a></li>
+<li><a href="#statements">Statements</a></li>
+<li><a href="#throwing-values-away">Throwing values away</a></li>
+<li><a href="#shadowing-bindings">Shadowing bindings</a></li>
+<li><a href="#immutability">Immutability</a></li>
+</ul>
+</li>
+<li><a href="#control-flow">Control flow</a>
+<ul>
+<li><a href="#if-else">If/else</a></li>
+<li><a href="#match">Match</a></li>
+<li><a href="#loops-iterators">Loops, iterators</a></li>
+<li><a href="#while-loops">While loops</a></li>
+<li><a href="#loop-loops">Loop loops</a></li>
+<li><a href="#for-loops">For loops</a></li>
+<li><a href="#ranges">Ranges</a></li>
+</ul>
+</li>
+<li><a href="#types">Types</a>
+<ul>
+<li><a href="#base-types">Base types</a></li>
+<li><a href="#structs">Structs</a></li>
+<li><a href="#struct-literal-assignment-shorthand">Struct literal assignment shorthand</a></li>
+<li><a href="#struct-update-syntax">Struct update syntax</a></li>
+<li><a href="#enums-sum-types">Enums (sum types)</a></li>
+<li><a href="#tuples">Tuples</a></li>
+</ul>
+</li>
+<li><a href="#functions">Functions</a>
+<ul>
+<li><a href="#values-and-reference">Passing argument by value or by reference</a></li>
+<li><a href="#dereferencing">Dereferencing</a></li>
+<li><a href="#methods">Methods</a></li>
+<li><a href="#the-self-type">The <code>Self</code> type</a></li>
+</ul>
+</li>
+<li><a href="#blocks">Blocks</a>
+<ul>
+<li><a href="#blocks-are-expressions">Blocks are expressions</a></li>
+<li><a href="#implicit-return">Implicit return</a></li>
+<li><a href="#everything-is-an-expression">Everything is an expression</a></li>
+</ul>
+</li>
+<li><a href="#patterns-and-destructuring">Patterns and destructuring</a>
+<ul>
+<li><a href="#destructuring-tuples">Destructuring tuples</a></li>
+<li><a href="#destructuring-structs">Destructuring structs</a></li>
+<li><a href="#destructuring-with-if-let">Destructuring with <code>if let</code></a></li>
+<li><a href="#match-arms-are-patterns">Match arms are patterns</a></li>
+</ul>
+</li>
+<li><a href="#macros">Macros</a>
+<ul>
+<li><a href="#the-println-and-format-macros">The <code>println!</code> and <code>format!</code> macros</a></li>
+<li><a href="#the-panic-macro">The <code>panic!</code> macro</a></li>
+<li><a href="#functions-that-panic">Functions that panic</a></li>
+</ul>
+</li>
+<li><a href="#generics">Generics</a>
+<ul>
+<li><a href="#generic-structs">Generic structs</a></li>
+<li><a href="#generic-functions">Generic functions</a></li>
+<li><a href="#traits">Traits</a></li>
+<li><a href="#type-parameter-constraints-trait-bounds">Type parameter constraints (trait bounds)</a></li>
+</ul>
+</li>
+<li><a href="#modules">Modules</a>
+<ul>
+<li><a href="#use-syntax"><code>use</code> syntax</a></li>
+<li><a href="#types-are-namespaces-too">Types are namespaces too</a></li>
+<li><a href="#the-libstd-prelude">The libstd prelude</a></li>
+</ul>
+</li>
+</ul>
+<h2><a href="#variable-bindings">Variable bindings</a></h2>
+<h3><a href="#the-let-keyword">The <code>let</code> keyword</a></h3>
+<p><code>let</code> introduces a variable binding:</p>
+<pre><code class="language-Rust">
+let x; // declare &quot;x&quot;
+x = 42; // assign 42 to &quot;x&quot;
+</code></pre>
+<p>This can also be written as a single line:</p>
+<pre><code class="language-Rust">let x = 42;
+</code></pre>
+<h3><a href="#uninitialized-variables">Uninitialized variables</a></h3>
+<p>If you declare a name and initialize it later, the compiler will prevent you from using it before it's initialized.</p>
+<pre><code class="language-Rust">let x;
+foobar(x); // error:-uninitialized variable: `x`
+x = 42;
+</code></pre>
+<p>However, doing this is completely fine:</p>
+<pre><code class="language-Rust">let x;
+x = 42;
+foobar(x); // the type of `x` will be inferred from here
+</code></pre>
+<h3><a href="#type-annotation">Type annotation</a></h3>
+<p>Rust performs <strong>type inference</strong>, so you don't usually have to spell out the type of a variable explicitly, but you can specify it explicitly if you want, using <code>:</code>, that's a type annotation:</p>
+<pre><code class="language-Rust">let x: i32; // `i32` is a signed 32-bit integer
+x = 42;
+</code></pre>
+<p>This can also be written as a single line:</p>
+<pre><code class="language-Rust">let x: i32 = 42;
+</code></pre>
+<h3><a href="#statements">Statements</a></h3>
+<p>The semi-colon marks the end of a statement:</p>
+<pre><code class="language-Rust">let x = 3;
+let y = 5;
+let z = y + x;
+</code></pre>
+<p>Which means statements can span multiple lines:</p>
+<pre><code class="language-Rust">
+let x = vec![1, 2, 3, 4, 5, 6, 7, 8]
+    .iter()
+    .map(|x| x + 3)
+    .fold(0, |x, y| x + y); // (We'll go over what those actually mean later).
+</code></pre>
+<h3><a href="#throwing-values-away">Throwing values away</a></h3>
+<p>The underscore <code>_</code> is a special name - or rather, a &quot;lack of name&quot;. It basically means to throw away something:</p>
+<pre><code class="language-Rust">// this does *nothing* because 42 is a constant
+let _ = 42;
+
+// this calls `get_thing` but throws away its result
+let _ = get_thing();
+</code></pre>
+<p>Names that <em>start</em> with an underscore are regular names, it's just that the <strong>compiler won't warn</strong> about them being unused:</p>
+<pre><code class="language-Rust">// we may use `_x` eventually, but our code is a work-in-progress
+// and we just wanted to get rid of a compiler warning for now.
+let _x = 42;
+</code></pre>
+<h3><a href="#shadowing-bindings">Shadowing bindings</a></h3>
+<p>Separate bindings with the same name can be introduced - you can <em>shadow</em> a variable binding:</p>
+<pre><code class="language-Rust">let x = 13;
+let x = x + 3;
+// using `x` after that line only refers to the second `x`
+</code></pre>
+<h3><a href="#immutability">Immutability</a></h3>
+<p>Variable bindings are immutable by default, which means they cannot be assigned to:</p>
+<pre><code class="language-Rust">fn main() {
+    let n = 17;
+    n = 27; // error: cannot assign twice to immutable variable `n`
+}
+</code></pre>
+<p>And also that their interior can't be mutated::</p>
+<pre><code class="language-Rust">fn main() {
+    let n = Number {
+        odd: true,
+        value: 17,
+    };
+    n.odd = false; // error: cannot assign to `n.odd`,
+                   // as `n` is not declared to be mutable
+}
+</code></pre>
+<p><code>mut</code> makes a variable binding mutable:</p>
+<pre><code class="language-Rust">fn main() {
+    let mut n = Number {
+        odd: true,
+        value: 17,
+    };
+    n.value = 19; // all good
+}
+</code></pre>
+<h2><a href="#control-flow">Control flow</a></h2>
+<h3><a href="#if-else">If/else</a></h3>
+<p>Like all programming languages, Rust has <code>if</code> conditions. But unlike most other languages, there's no parentheses around the condition:</p>
+<pre><code class="language-Rust">
+if is_valid {
+    // do something
+}else{
+    // do something else
+}
+</code></pre>
+<p>If/else can be chained together without a particular “elseif” keyword:</p>
+<pre><code class="language-Rust">
+if is_blue {
+
+}else if is_green {
+
+}else if is_red {
+
+}else{
+
+}
+</code></pre>
+<h3><a href="#match">Match</a></h3>
+<p>For complex matching, Rust has the <code>match</code> keyword, which works a bit like <code>switch</code> in other languages:</p>
+<pre><code class="language-Rust">
+match name {
+    &quot;Alice&quot; =&gt; {
+        println!(&quot;Hey, Alice what's up ?&quot;);
+    },
+    &quot;Bob&quot; =&gt; {
+        println!(&quot;Oh no it's Bob, let's move&quot;);
+    },
+    _ =&gt; {
+        println!(&quot;Hello, nice to meet you&quot;);
+    }
+}
+
+</code></pre>
+<p>It works a bit differently than switch in most languages though.</p>
+<p>First of all there's no “fall-through” between arms, take this JavaScript example:</p>
+<pre><code class="language-JavaScript">
+switch(number){
+        case 0:
+            console.log(&quot;It's case number 0&quot;);
+            // Oh no, we forgot the `break` statement here
+        case 1:
+            console.log(&quot;It's case number 1&quot;); // Or it could be case n°0 since there's no `break` in case zero
+            break;
+   }
+</code></pre>
+<p>If you want multiple cases to go to the same arm, you need to make it explicit with a <code>|</code> symbol:</p>
+<pre><code class="language-Rust">match sport {
+    &quot;Football&quot; | &quot;Rugby&quot; =&gt; {
+        println!(&quot;We play on a grass field&quot;);
+    },
+    &quot;Basketball&quot; =&gt; {
+        println!(&quot;We play on parquet floors&quot;);
+    },
+    _ =&gt; {
+        println!(&quot;I don't know where other sports play&quot;);
+    }
+}
+</code></pre>
+<p>Another difference with <code>switch</code> from other languages is the exhaustiveness requirement: A <code>match</code> has to be exhaustive: at least one arm needs to match.</p>
+<pre><code class="language-Rust">match n {
+    1 =&gt; println!(&quot;One&quot;),
+    2 =&gt; println!(&quot;Two&quot;), 
+    // error: non-exhaustive patterns:`0` and `&gt;3` not covered 
+}
+</code></pre>
+<p>The following code fixes the error, by assigning the value that did not match the previous arm to a new variable called <code>value</code>:</p>
+<pre><code class="language-Rust">match n {
+    1 =&gt; println!(&quot;One&quot;),
+    2 =&gt; println!(&quot;Two&quot;),
+    value =&gt; println!(&quot;{}&quot;, value),
+}
+</code></pre>
+<p>If you don't need the value, <code>_</code> can be used as the &quot;catch-all&quot; pattern, like in the examples above.</p>
+<h3><a href="#loops-iterators">Loops, iterators</a></h3>
+<p>Rust has three different kinds of loops.</p>
+<h3><a href="#while-loops">While loops</a></h3>
+<p>While loops are pretty straightfoward, it's just the <code>while</code> keyword, followed by a boolean condition not surounded in parentheses (exactly like <code>if</code>):</p>
+<pre><code class="language-Rust">while condition {
+    // do something repeatedly
+}
+</code></pre>
+<p>Like with most programming languages, you can either skip the current round of the loop with the <code>continue</code> keyword, or break out of the loop entirely with the <code>break</code> keyword.</p>
+<h3><a href="#loop-loops">Loop loops</a></h3>
+<p>For the special situation where the program is supposed to loop forever, with no particular condition, there's the <code>loop</code> keyword.</p>
+<pre><code class="language-Rust">
+loop {
+    // do something
+}
+
+</code></pre>
+<p>Is exactly equivalent to </p>
+<pre><code class="language-Rust">
+while true {
+
+}
+
+</code></pre>
+<h3><a href="#for-loops">For loops</a></h3>
+<p>The most common type of loops is the <code>for</code> loop.</p>
+<p>Unlike most programming languages out there, Rust only accepts a single syntax for <code>for</code> loop, which is based on iterators.</p>
+<p>Anything that is iterable can be used in a <code>for</code> loop.</p>
+<p>For instance, here's how it works when iterating over a vector:</p>
+<pre><code class="language-Rust">fn main() {
+    for i in vec![52, 49, 21] { 
+        println!(&quot;I like the number {}&quot;, i); 
+    }
+}
+</code></pre>
+<h3><a href="#ranges">Ranges</a></h3>
+<p>If you want to iterate between <code>0</code> and <code>n</code>, you need to use ranges.</p>
+<pre><code class="language-Rust">
+for i in 0..n {
+
+}
+
+</code></pre>
+<p>There are two kinds of ranges, <strong>exclusive</strong> ranges <code>a..b</code> which go from <code>a</code> to <code>b-1</code>.</p>
+<p>And <strong>inclusive</strong> ranges <code>a..=b</code> which go from <code>a</code> to <code>b</code> included. </p>
+<h2><a href="#types">Types</a></h2>
+<h3><a href="#base-types">Base types</a></h3>
+<p>Rust has a bunch of basic types.</p>
+<p>Different size of <em>signed</em> integer:</p>
+<ul>
+<li><code>i8</code></li>
+<li><code>i16</code></li>
+<li><code>i32</code></li>
+<li><code>i64</code></li>
+</ul>
+<p>Also <em>unsigned</em> integer:</p>
+<ul>
+<li><code>u8</code></li>
+<li><code>u16</code></li>
+<li><code>u32</code></li>
+<li><code>u64</code></li>
+</ul>
+<p>It also has pointer-sized integer, whose specific type depends on the platform you compile for:</p>
+<ul>
+<li><code>isize</code></li>
+<li><code>usize</code></li>
+</ul>
+<p>If you're compiling for a 32 bits platform, then usize is going to be 32 bits long, like u32, whereas if you are targeting a 64-bits plateform then it's going to be 64 bits long.</p>
+<p><code>isize</code> is not very common, but <code>usize</code> is the type to use for indexing (like indexing over an array, a string or a vector).</p>
+<p>You can cast from one type to another with the <code>as</code> keyword. But be careful, overflows can happen when you do so.</p>
+<pre><code class="language-Rust">fn main(){
+    let a: i8 = 4;
+    let b = a as usize; // b is equal to 4, but stored as a usize
+
+    let x: u8 = 129;
+    let y = b as i8; // y == -127
+}
+</code></pre>
+<p>Rust also has floating points numbers, in two different precisions:</p>
+<ul>
+<li><code>f32</code></li>
+<li><code>f64</code></li>
+</ul>
+<p>Boolean: <code>bool</code> that can be either <code>true</code> or <code>false</code>.</p>
+<p>Characters: <code>char</code> which are written between simple quotes (<code>'</code>)</p>
+<pre><code class="language-Rust">let v = 'v';
+</code></pre>
+<p>And strings, that come in two different shapes:</p>
+<ul>
+<li><code>String</code>, that is allocated on the heap and growable, akin to Java's StringBuilder</li>
+<li><code>str</code>, also called “string slice”, whose size is fixed, akin to Java's String. <code>str</code> can almost never be used directly, and will almost always come behind a reference: <code>&amp;str</code> (see <a href="#values-and-reference">below</a>).</li>
+</ul>
+<p>String <em>litterals</em> are being written between double quotes (<code>&quot;</code>) and they are references to a string slice:</p>
+<pre><code class="language-Rust">let hello_world: &amp;str = &quot;Hello, World!&quot;;
+</code></pre>
+<h3><a href="#structs">Structs</a></h3>
+<p>Structs are the equivalent of classes in other langages, they are declared with the <code>struct</code> keyword:</p>
+<p>Rust code</p>
+<pre><code class="language-Rust">struct Vec2 {
+    x: f64, // 64-bit floating point, aka &quot;double precision&quot;
+    y: f64,
+}
+</code></pre>
+<p>They can be initialized using struct literals:</p>
+<pre><code class="language-Rust">let v1 = Vec2 { x: 1.0, y: 3.0 };
+let v2 = Vec2 { y: 2.0, x: 4.0 };
+// the order does not matter, only the names do
+</code></pre>
+<p>You can access to the fields of a struct with a dot <code>.</code>, like in many other programming languages:</p>
+<pre><code class="language-Rust">v.x 
+</code></pre>
+<p>By convention, in Rust structs, and every other <em>types</em> are spelled out in <em>PascalCase</em> (like camelCase, but with an upper case letter at the begining)</p>
+<h3><a href="#struct-literal-assignment-shorthand">Struct literal assignment shorthand</a></h3>
+<p>Speaking of: in a struct literal, when a field is set to a variable binding of the same name:</p>
+<pre><code class="language-Rust">let p = Person { name: name };
+</code></pre>
+<p>It can be shortened like this:</p>
+<pre><code class="language-Rust">let p = Person { name };
+</code></pre>
+<p>Tools like <a href="https://doc.rust-lang.org/stable/clippy/usage.html">clippy</a> will suggest making those changes, and even apply the fix programmatically if you let it.</p>
+<h3><a href="#struct-update-syntax">Struct update syntax</a></h3>
+<p>There is a shortcut for initializing the <em>rest of the fields</em> from another struct:</p>
+<pre><code class="language-Rust">let v3 = Vec2 {
+    x: 14.0,
+    ..v2
+};
+</code></pre>
+<p>This is called &quot;struct update syntax&quot;, can only happen in last position, and cannot be followed by a comma.</p>
+<p>Note that <em>the rest of the fields</em> can mean <em>all the fields</em>:</p>
+<pre><code class="language-Rust">let v4 = Vec2 { ..v3 };
+</code></pre>
+<h3><a href="#tuples">Tuples</a></h3>
+<p>Rust has tuples, which you can think of as &quot;fixed-length collections of values of different types&quot;. Tuples are kind of “anonymous structs” were fields are also anonymous.</p>
+<pre><code class="language-Rust">let pair = ('a', 17);
+pair.0; // this is 'a'
+pair.1; // this is 17
+</code></pre>
+<p>If we really wanted to annotate the type of <code>pair</code>, we would write:</p>
+<pre><code class="language-Rust">let pair: (char, i32) = ('a', 17);
+</code></pre>
+<p>There's also the concept of <em>“Tuple Struct”</em>, which are <em>named</em>, like structs, but fields are anonymous like tuples. They are defined with the <code>struct</code> keyword, but uses parentheses like normal tuples.</p>
+<pre><code class="language-Rust">struct Foo(u32, u32);
+</code></pre>
+<h3><a href="#enums-sum-types">Enums (sum types)</a></h3>
+<p>When you want to express <code>alternatives</code>, you can use enums.</p>
+<pre><code class="language-Rust">enum Side {
+    Left,
+    Right,
+}
+
+fn name_side(side: &amp;Side){
+    match side {
+        Side::Left =&gt; println!(&quot;Le côté gauche&quot;),
+        Side::Right =&gt; prinln!(&quot;Le côté droit&quot;),
+    }
+}
+</code></pre>
+<p>Enums can also contain data, and the variant behaves like a struct or a tuple struct.</p>
+<pre><code class="language-Rust">
+enum Flavor{
+    Vanilla,
+    Chocolate,
+    Strawberry,
+    Lemon,
+}
+
+enum IceCream{
+    Simple(Flavor),
+    Double(Flavor, Flavor),
+    Triple{
+        first_scoop: Flavor,
+        second_scoop: Flavor,
+        third_scoop: Flavor,
+    },
+}
+
+</code></pre>
+<h2><a href="#functions">Functions</a></h2>
+<p><code>fn</code> declares a function.</p>
+<p>Here's a void function:</p>
+<pre><code class="language-Rust">fn greet() {
+    println!(&quot;Hi there!&quot;);
+}
+</code></pre>
+<p>Now here's a function that takes an input parameter</p>
+<pre><code class="language-Rust">fn greet_someone(name: &amp;str) {
+    println!(&quot;Hi {name}!&quot;);
+}
+</code></pre>
+<p>And here's a function that returns a 32-bit signed integer. The arrow indicates its return type:</p>
+<pre><code class="language-Rust">fn fair_dice_roll() -&gt; i32 {
+    4
+}
+</code></pre>
+<p>For functions parameters and return value, the type must be written down explicitly, there's no type inference here.</p>
+<p>And by convention, in Rust functions are spelled with <em>snake_case</em>: It's <code>fair_dice_roll()</code> not <code>fairDiceRoll()</code>.</p>
+<h3><a href="#values-and-reference">Passing argument by value or by reference</a></h3>
+<p>Unlike some other programming languages, Rust doesn't have an implicit “this kinds of things pass by values and these other passes by reference”, it must be spelled in the type of the parameter. References are written using the <code>&amp;</code> symbol.</p>
+<pre><code class="language-Rust">
+fn by_value(i: u32){
+    // do something with i
+}
+
+fn by_reference(i: &amp;u32){
+    // do something with i
+}
+</code></pre>
+<p>Rust actually has two types of references: basic references <code>&amp;</code> which are read-only, and mutable references <code>&amp;mut</code> which allow mutations:</p>
+<pre><code class="language-Rust">fn by_ref(i: &amp;u32){
+    // you can only **read** i
+}
+
+fn by_mut_ref(i: &amp;mut u32){
+    // you can **both read and write** to i
+}
+</code></pre>
+<p>When calling a function that requires a parameter passed by reference, you need to take a reference to the variable you're calling the function with:</p>
+<pre><code class="language-Rust">
+let x = 43;
+
+by_ref(&amp;x);
+</code></pre>
+<p>And to take a mutable reference to a variable, your variable needs to be mutable as well:</p>
+<pre><code class="language-Rust">let x = 43;
+
+by_ref_mut(&amp;mut x); // error: x needs to be mutable
+
+let mut y = 34;
+
+by_ref_mut(&amp;mut y);
+
+</code></pre>
+<h3><a href="#dereferencing">Dereferencing</a></h3>
+<p>To access an item behind a reference, you need to <strong>dereference</strong> it, with the <code>*</code> symbol:</p>
+<pre><code class="language-Rust">fn foo(i: &amp;mut u32){
+    *i = 42; // updates the value pointed by the reference to 42
+}
+</code></pre>
+<h3><a href="#methods">Methods</a></h3>
+<p>You can declare methods on any of the types you've defined, be it a struct, an enum or a tupple struct (but not regular tuples, because you don't “define” them).</p>
+<p>As with most programming languages, there're two kinds of methods: “regular methods”, that are being run on the object itself, and what object oriented programming languages call “static methods” which are methods of the type itself. “Regular methods” are called with a dot (<code>.</code>) on the object whereas “static methods” are called with a double colon (<code>::</code>) on the type:</p>
+<pre><code class="language-Rust">
+struct MyType{
+    // fields here
+}
+
+// we'll see how we implement the methods later
+
+fn toto(){
+
+    let t = MyType{
+        // fields here
+    };
+
+    t.method(); // this is a “regular method” call on the object `t`
+
+    MyType::static_method(); // this is a call to a “static method”
+}
+
+</code></pre>
+<p>Methods for a type are declared in an <code>impl</code> block:</p>
+<pre><code class="language-Rust">
+impl MyType{
+
+}
+
+</code></pre>
+<p>You can declare methods on your own types, but not on external types.</p>
+<pre><code class="language-Rust">impl u8 { // error: you can't implement methods on a foreign type
+
+}
+</code></pre>
+<p>A “static method” is just a regular function defined in a <code>impl</code> block.</p>
+<pre><code class="language-Rust">
+impl MyType{
+    // this method return a newly created MyType object
+    // there's no specific constructor in Rust, you just create a static method called  `new()` (or any name, really)
+    fn new() -&gt; MyType{
+        MyType{
+            // fields here
+        }
+    }
+}
+
+fn toto(){
+    let t = MyType::new();
+}
+
+</code></pre>
+<p>A “regular method” is a function with a special <code>self</code> parameter as first parameter</p>
+<pre><code class="language-Rust">
+struct Person{
+    height: f32,
+    weight: f32,
+}
+
+impl Person {
+    fn body_mass_index(&amp;self) -&gt; f32{
+        self.weight / (self.height*self.height)
+    }
+}
+
+fn main(){
+
+    let victor = Person {
+        height: 2.24,
+        weight: 95.,
+    };
+
+    let bmi = victor.body_mass_index();
+
+}
+</code></pre>
+<p>Like any parameters of any function, the <code>self</code> parameter can be passed by value, by reference or by mutable reference.</p>
+<h3><a href="#the-self-type">The <code>Self</code> type</a></h3>
+<p>An <code>impl</code> block is always <em>for</em> a type, so, inside that block, <code>Self</code> means that type:</p>
+<pre><code class="language-Rust">struct ComplexNumper{
+    real: f64,
+    imaginary: f64,
+}
+
+impl ComplexNumber {
+    fn neg(self) -&gt; Self { // Self represents ComplexNumber here
+        Self {
+            real: -self.real,
+            imaginary: -self.imaginary,
+        }
+    }
+}
+</code></pre>
+<h2><a href="#blocks">Blocks</a></h2>
+<p>A pair of brackets declares a block, which has its own scope:</p>
+<pre><code class="language-Rust">// This prints &quot;in&quot;, then &quot;out&quot;
+fn main() {
+    let x = &quot;out&quot;;
+    {
+        // this is a different `x`
+        let x = &quot;in&quot;;
+        println!(&quot;{}&quot;, x);
+        // prints &quot;in&quot;
+    }
+    println!(&quot;{}&quot;, x);
+    // prints &quot;out&quot;
+}
+</code></pre>
+<h3><a href="#blocks-are-expressions">Blocks are expressions</a></h3>
+<p>Blocks are also expressions, which mean they evaluate to a value.</p>
+<pre><code class="language-Rust">// this:
+let x = 42;
+
+// is equivalent to this:
+let x = { 42 };
+</code></pre>
+<p>Inside a block, there can be multiple statements:</p>
+<pre><code class="language-Rust">let x = {
+    let y = 1; // first statement
+    let z = 2; // second statement
+    y + z // this is the *tail* - what the whole block will evaluate to
+};
+// here x is equal to 3
+</code></pre>
+<h3><a href="#implicit-return">Implicit return</a></h3>
+<p>Because blocks can return value, you don't need the <code>return</code> keyword at the end of a function either, these are equivalent:</p>
+<pre><code class="language-Rust">fn fair_dice_roll() -&gt; i32 {
+    return 4;
+}
+
+fn fair_dice_roll() -&gt; i32 {
+    4
+}
+</code></pre>
+<h3><a href="#everything-is-an-expression">Everything is an expression</a></h3>
+<p><code>if</code> conditionals are also expressions:</p>
+<pre><code class="language-Rust">let num = if feeling_lucky {
+    6
+} else {
+    4
+};
+</code></pre>
+<p>And <code>match</code> is also an expression:</p>
+<pre><code class="language-Rust">fn fair_dice_roll(feeling_lucky: bool) -&gt; i32 {
+    match feeling_lucky {
+        true =&gt; 6,
+        false =&gt; 4,
+    }
+} // the return value of the function is either 6 or 4 depending on the value of feeling lucky
+</code></pre>
+<p>The function above is equivalent to</p>
+<pre><code class="language-Rust">fn fair_dice_roll(feeling_lucky: bool) -&gt; i32 {
+    match feeling_lucky {
+        true =&gt; return 6,
+        false =&gt; return 4,
+    }
+} 
+</code></pre>
+<h2><a href="#patterns-and-destructuring">Patterns and destructuring</a></h2>
+<h3><a href="#destructuring-tuples">Destructuring tuples</a></h3>
+<p>Tuples can be <em>destructured</em> when doing an assignment, which means they're broken down into their individual fields:</p>
+<pre><code class="language-Rust">let (some_char, some_int) = ('a', 17);
+// now, `some_char` is 'a', and `some_int` is 17
+</code></pre>
+<p>This is especially useful when a function returns a tuple:</p>
+<p>Rust code</p>
+<pre><code class="language-Rust">let (left, right) = slice.split_at(middle);
+</code></pre>
+<p>Of course, when destructuring a tuple, <code>_</code> can be used to throw away part of it:</p>
+<pre><code class="language-Rust">let (_, right) = slice.split_at(middle);
+</code></pre>
+<h3><a href="#destructuring-structs">Destructuring structs</a></h3>
+<pre><code class="language-Rust">let v = Vec2 { x: 3.0, y: 6.0 };
+let Vec2 { x, y } = v; // `x` is now 3.0, `y` is now `6.0`
+</code></pre>
+<p>And this:</p>
+<pre><code class="language-Rust">let Vec2 { x, .. } = v; // this throws away `v.y`
+</code></pre>
+<h3><a href="#destructuring-with-if-let">Destructuring with <code>if let</code></a></h3>
+<p>Because enums have multiple variants, you cannot simply destructure like you'd do for struct. But <code>let</code> patterns can be used as conditions in <code>if</code>:</p>
+<pre><code class="language-Rust">
+```Rust
+
+enum Flavor{
+    Vanilla,
+    Chocolate,
+    Strawberry,
+    Lemon,
+}
+
+enum IceCream{
+    Simple(Flavor),
+    Double(Flavor, Flavor),
+    Triple{
+        first_scoop: Flavor,
+        second_scoop: Flavor,
+        third_scoop: Flavor,
+    },
+}
+
+fn print_ice_cream(ice_cream: IceCream){
+    if let IceCream::Simple(flavor) = ice_cream {
+        println!(&quot;An ice cream with a single scoop of {flavor}&quot;);
+    }else {
+        println!(&quot;An ice cream with multiple flavors&quot;);
+    }
+}
+</code></pre>
+<p>And <code>if let</code> patterns can also be used for things other than enum, like struct with boolean condition inside</p>
+<pre><code class="language-Rust">struct Number {
+    odd: bool,
+    value: i32,
+}
+
+fn main() {
+    let one = Number { odd: true, value: 1 };
+    let two = Number { odd: false, value: 2 };
+    print_number(one);
+    print_number(two);
+}
+
+fn print_number(n: Number) {
+    if let Number { odd: true, value } = n {
+        println!(&quot;Odd number: {}&quot;, value);
+    } else if let Number { odd: false, value } = n {
+        println!(&quot;Even number: {}&quot;, value);
+    }
+}
+// this prints:
+// Odd number: 1
+// Even number: 2
+</code></pre>
+<h3><a href="#match-arms-are-patterns">Match arms are patterns</a></h3>
+<p><code>match</code> arms are also patterns, just like <code>if let</code>:</p>
+<pre><code class="language-Rust">fn print_all_flavor(i: IceCrean) {
+    match i {
+        Simple(flavor) =&gt; println!(&quot; An ice cream with a single scoop of {flavor}&quot;),
+        Double(flavor_1, flavor_2) =&gt; println!(&quot; An ice cream with {flavor_1} and {flavor_2}&quot;),
+        Triple{ first_scoop, second_scoop, third_scoop } =&gt; {
+            println!(&quot;An ice creamn with {first_scoop},{second_scoop} and {third_scoop}&quot;);
+        }
+    }
+}
+</code></pre>
+<h2><a href="#macros">Macros</a></h2>
+<p>Macros are kind of like functions, but with an exclamation mark at the end. Unlike functions, that aren't called at run time, with some parameters. They are <strong>expanded</strong> at compile time into normal code. Macros are being used to reduce boilerplate in repetitive code. </p>
+<p>For instance, <code>println!</code> is a macro: </p>
+<pre><code class="language-Rust">fn main() { 
+    println!(&quot;Hello {}!&quot;, &quot;Bob&quot;); 
+} 
+</code></pre>
+<p>This expands to something that has the same effect as: </p>
+<pre><code class="language-Rust">fn main() { 
+    use std::io::{self, Write}; io::stdout().lock().write_all(b&quot;Hello there!\\n&quot;).unwrap(); 
+}
+</code></pre>
+<p>While functions only take a fixed number of arguments, macros can accept arbitrary number of them, and are often used for that reason.</p>
+<p>For instance, it's the reason why we need <code>println!</code> to be a macro.</p>
+<pre><code class="language-Rust">fn main() { 
+    println!(&quot;Hello {} and {}!&quot;, &quot;Alice&quot;, &quot;Bob&quot;); 
+} 
+</code></pre>
+<p>It's also used to initialize vectors with an arbitrary number of elements:</p>
+<pre><code class="language-Rust">let v = vec![1,2,3,4,5];
+</code></pre>
+<p>As you can see above, unlike functions where you always use <code>()</code>, you can use either <code>()</code> or <code>[]</code> or <code>{}</code> whne calling a macro. The following three macro invocations are strictly equivalent:</p>
+<pre><code class="language-Rust">let v = vec![1,2,3,4,5];
+let v = vec!(1,2,3,4,5);
+let v = vec!{1,2,3,4,5};
+</code></pre>
+<p>By <em>convention</em> macros that behaves like a simple function are being called with <code>()</code>, <code>[]</code> is used with the only for the <code>vec!</code> macro, and macros that do more fancy stuff use <code>{}</code>.</p>
+<p>Using macros is very common, most of the time the macros come from the standard library (<code>println!</code>, <code>vec!</code>, <code>assert_eq!</code>, for example), but they can also come from a library or you can define your own, even though this is much rarer.</p>
+<h3><a href="#the-println-and-format-macros">The <code>println!</code> and <code>format!</code> macros</a></h3>
+<p>For text formatting, there's a very common macro called <code>format!</code> which is internally being used in a lot of other macros, including the <code>println!</code> one that prints line to the terminal.</p>
+<p>In can print variables if you include their name directly in the format string between curly brakets like this:</p>
+<pre><code class="language-Rust">let x = 4;
+format!(&quot;{x}&quot;);
+</code></pre>
+<p>But if you need to print not a variable but a struct field for instance, then you cannot include it in the format string, and need to append it at the end of the macro, as formatting parameter:</p>
+<pre><code class="language-Rust">
+struct Person{
+    name: String,
+}
+
+fn main(){
+    let steph = Person{ name: &quot;Stephen&quot;};
+    // you can't do `{steph.name}`
+    println!(&quot;His name is {}&quot;, steph.name);
+}
+
+</code></pre>
+<h3><a href="#the-panic-macro">The <code>panic!</code> macro</a></h3>
+<p><code>panic</code> is also a macro. It violently stops execution with an error message, and the file name / line number of the error, if enabled:</p>
+<pre><code class="language-Rust">fn main() {
+    panic!(&quot;This panics&quot;);
+}
+// output: thread 'main' panicked at 'This panics', src/main.rs:3:5
+</code></pre>
+<h3><a href="#functions-that-panic">Functions that panic</a></h3>
+<p>Some methods also panic. For example, the <code>Option</code> type can contain something, or it can contain nothing. If <code>.unwrap()</code> is called on it, and it contains nothing, it panics:</p>
+<pre><code class="language-Rust">fn main() {
+    let o1: Option&lt;i32&gt; = Some(128);
+    o1.unwrap(); // this is fine
+
+    let o2: Option&lt;i32&gt; = None;
+    o2.unwrap(); // this panics!
+}
+
+// output: thread 'main' panicked at 'called `Option::unwrap()` on a `None` value', src/libcore/option.rs:378:21
+</code></pre>
+<h2><a href="#generics">Generics</a></h2>
+<h3><a href="#generic-structs">Generic structs</a></h3>
+<p>Structs can be generic, that is: they can exist in various forms, thanks to the generic (that is, variable) type they contain.</p>
+<p>The standard library type <code>Vec</code> (~ a heap-allocated, growable, array), is generic over the type of elements it contains:</p>
+<pre><code class="language-Rust">
+fn main() {
+    let mut v1 = Vec::new();
+    v1.push(1);
+    // v1 is a Vec of integer.
+
+    let mut v2 = Vec::new();
+    v2.push(false);
+    // v2 is a Vec of bool
+
+    v2.push(2); // error: every elements in a vector must be the same type.
+}
+</code></pre>
+<p>Enum can be generics too. Here are two enums that Rust uses to get null-able types (the <code>Option</code> enum), and to express the fact that some functions can fail (the <code>Result</code> enum).</p>
+<p><code>Option</code> can either contain something (of any type, hence the generic parameter <code>T</code>), or be <code>None</code>.</p>
+<pre><code class="language-Rust">enum Option&lt;T&gt; {
+    Some(T),
+    None,
+}
+</code></pre>
+<p><code>Result</code> is also an enum, it can either contain something, or an error. The error itself can be of any type: it can be an integer error code, or a string message, or some more structured error type, hence the generic parameter <code>E</code> in addition to the generic parameter <code>T</code> for the non-error return value.</p>
+<pre><code class="language-Rust">enum Result&lt;T, E&gt; {
+    Ok(T),
+    Err(E),
+}
+</code></pre>
+<h3><a href="#generic-functions">Generic functions</a></h3>
+<p>Functions can also be generic:</p>
+<pre><code class="language-Rust">fn foobar&lt;T&gt;(arg: T) {
+    // do something with `arg`
+}
+</code></pre>
+<h3><a href="#traits">Traits</a></h3>
+<p>Traits are the Rust equivalent of an “interface” in other languages, they are something multiple types can have in common:</p>
+<pre><code class="language-Rust">trait Signed {
+    fn is_strictly_negative(self) -&gt; bool;
+}
+</code></pre>
+<h3><a href="#type-parameter-constraints-trait-bounds">Type parameter constraints (trait bounds)</a></h3>
+<p>Generic type parameters usually have <em>constraints</em>, so you can actually do something with them.</p>
+<p>The simplest constraints are just trait names:</p>
+<pre><code class="language-Rust">fn print&lt;T: Signed&gt;(value: T) {
+    if value.is_strictly_negative() {
+        println!(&quot;value is strictly negative&quot;);
+    }
+}
+</code></pre>
+<p>There's a longer syntax for type parameter constraints:</p>
+<pre><code class="language-Rust">fn print&lt;T&gt;(value: T) where T: Signed {
+    if value.is_strictly_negative() {
+        println!(&quot;value is strictly negative&quot;);
+    }
+}
+</code></pre>
+<p>The two syntaxes above are strictly equivalent, the first one is the most common for simple situation, and the second gets used when the traits constraints are getting hairier.</p>
+<h2><a href="#modules">Modules</a></h2>
+<p>Rust code is organised in <em>crates</em>(~ a library), which contains <em>modules</em>. Modules can be nested, so you have modules that belongs to other modules. The standard library is a <em>crate</em>, that's included by default in your projects, then there's the <em>crates</em> you added as dependencies, and there's your own crate. All of these crates contains modules, that contains the types, traits and function you're going to use on your project.</p>
+<h3><a href="#use-syntax"><code>use</code> syntax</a></h3>
+<p>To use types and functions defined outside of your current model, like in the standard library or in your dependencies, you need to use their full namespace path to refer to them: In this example, <code>std</code> is the <em>crate</em> , <code>cmp</code> is the <em>module</em>, and <code>min</code> is the <em>function</em>:</p>
+<pre><code class="language-Rust">let least = std::cmp::min(3, 8); // the min function computes the minimum between two number, so the result is 3
+</code></pre>
+<p>To avoid repeating the same path over and over again, the <code>use</code> directives can be used to &quot;bring in scope&quot; names from other namespace, so that you can use them without writing down the full path.</p>
+<pre><code class="language-Rust">// at the top of the module (which, in practice is itself a source code file)
+use std::cmp::min;
+
+[…]
+
+// then everywhere in the file, you can use `min` directly without the full path
+
+let least = min(7, 1); // this is 1
+</code></pre>
+<p>If we want to import both <code>min</code> and <code>max</code>, we can do any of these:</p>
+<pre><code class="language-Rust">// this works:
+use std::cmp::min;
+use std::cmp::max;
+
+// this also works:
+use std::cmp::{min, max};
+
+// this also works!
+use std::{cmp::min, cmp::max};
+</code></pre>
+<p>A wildcard (<code>*</code>) lets you import every symbol from a namespace:</p>
+<pre><code class="language-Rust">// this brings `min` and `max` in scope, and many other things
+use std::cmp::*;
+</code></pre>
+<h3><a href="#the-libstd-prelude">The libstd prelude</a></h3>
+<p><code>str</code> is a primitive type, but many non-primitive types are also in scope by default.</p>
+<pre><code class="language-Rust">// `Vec` is a regular struct, not a primitive type
+let v = Vec::new();
+
+// this is exactly the same code, but with the *full* path to `Vec`
+let v = std::vec::Vec::new();
+</code></pre>
+<p>This works because Rust inserts this at the beginning of every module:</p>
+<pre><code class="language-Rust">use std::prelude::v1::*;
+</code></pre>
+<p>(Which in turns re-exports a lot of symbols, like <code>Vec</code>, <code>String</code>, <code>Option</code> and <code>Result</code>).</p>
+<h3><a href="#crates">Crates</a></h3>
+<p>Crates are the rust name for external libraries. They can be found on <a href="https://crates.io">crates.io</a> or <a href="lib.rs">lib.rs</a> (which is just an alternative front-end for crates.io).</p>
+<p>To install a crate you can either edit your <code>Cargo.toml</code> file manually:</p>
+<pre><code class="language-Toml">[dependencies]
+rand = &quot;0.8.3&quot;
+</code></pre>
+<p>This add the version <code>0.8.3</code> (or next semver-compile version) of the <code>rand</code> crate to your project.</p>
+<p>Or you can use the <code>cargo</code> cli</p>
+<pre><code class="language-bash">cargo add rand
+</code></pre>
+<p>It will automatically update your <code>Cargo.toml</code> file with the latest version of the rand library.</p>
+
+        </div>
+    </body>
+</html>
