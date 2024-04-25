@@ -1,8 +1,9 @@
+
 name: inverse
 class: center, middle, inverse
 ---
 name: kevin_splash
-class: center, middle, inverse
+class: center, middle
 ---
 template: inverse
 
@@ -156,9 +157,9 @@ template: inverse
   ### La gestion de la mémoire
 ]
 .right-column[
-Les programmes ont besoin de mémoire pendant un certain temps.
-La mémoire n'est pas infinie.
-Donc quand ils n'en ont plus besoin il faut la désallouer.
+- Les programmes ont besoin de mémoire pendant un certain temps.
+- La mémoire n'est pas infinie.
+- Donc quand ils n'en ont plus besoin il faut la désallouer.
 ]
 
 ???
@@ -268,7 +269,6 @@ The deadlock empire:
 [http://deadlockempire.github.io/](http://deadlockempire.github.io/)
 
 ---
-template: kevin_splash
 ## Rust
 
 - Créé en 2006 par Graydon Hoare, pour résoudre le problème du multithreading.
@@ -276,7 +276,6 @@ template: kevin_splash
 - puis l'équipe s'est rendu compte qu'ils pouvaient se débarrasser du GC
 
 ---
-template: kevin_splash
 ## Success story
 
 Sorti en version stable en 2015
@@ -292,7 +291,6 @@ Utilisé par:
 - [Promus par la Maison Blanche](https://www.whitehouse.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/) ! 
 
 ---
-template: kevin_splash
 ## Comment ça marche ?
 
 Le langage est divisé deux ensembles:
@@ -629,6 +627,7 @@ Pour ne pas vous assommer
 ]
 .right-column[
 Écrire un programme qui écoute les connexions TCP, et pour chaque connexion reçue, affiche ce qui est envoyé sur le réseau.
+
 Documentations à regarder:
 - `std::net::TcpListener`
 - `std::net::TcpStream`
@@ -731,7 +730,7 @@ Quel est le problème avec ce code ?
 Le `thread::spawn` on utilise désormais un thread par connexion
 
 
---- 
+---
 template: inverse
 
 ## Les aménagements au système d'ownership et aux règles de borrowing
@@ -746,7 +745,7 @@ template: inverse
 
 Comment on a dit qu'on pouvait contourner les règles déjà?
 
---- 
+---
 
 .left-column[
   ## Les aménagements
@@ -767,7 +766,7 @@ Marche, parce que les entiers implémentent [le trait `Copy`](https://doc.rust-l
 
 ]
 ???
---- 
+---
 .left-column[
   ## Le trait Copy 
 ]
@@ -778,7 +777,7 @@ Seuls quelques objets «simples» implémentent `Copy` par défault.
 - les références `&` (non mutables !)
 ]
 ???
---- 
+---
 
 
 .left-column[
@@ -799,7 +798,7 @@ struct Point{
     
 ]
 ???
---- 
+---
 template: inverse
 
 ## Apparté: la pile / le tas
@@ -808,7 +807,7 @@ template: inverse
 
 Est-ce que vous êtes familiers avec ces concepts ?
 
---- 
+---
 
 .left-column[
 ## Apparté: la pile / le tas
@@ -825,7 +824,7 @@ La pile (_“stack”_):
 ???
 
 *pas tout à fait vrai en théorie, mais en pratique c'est tout comme, et c'est vrai en Rust
---- 
+---
 
 
 .left-column[
@@ -840,7 +839,6 @@ La tas (_“heap”_):
 - on peut y mettre n'importe quoi (y compris des objets qui tiendrait sur la pile)
 ]
 ---
-template: inverse
 ## Apparté: `#[derive()]`
 
 - permet d'implémenter automatiquement certains traits sur une struct
@@ -854,7 +852,7 @@ struct Point{
 }
 ```
 
---- 
+---
 .left-column[
   ## Le trait Copy
 ]
@@ -872,7 +870,7 @@ assert_eq!(a.x, b.x); // a est toujours disponible, l'objet a été copié pour 
 
 ]
 ???
---- 
+---
 
 .left-column[
   ## Le trait Copy
@@ -897,14 +895,14 @@ let bob2 = bob.clone();
 ```
 
 ]
---- 
+---
 
 .left-column[
   ## Le trait Copy
 ]
 .right-column[
 
-Idem si copier l'objet implique une opération qui n'est pas seulement une copie bit à bit.
+Idem si copier l'objet implique une opération qui n'est pas **seulement une copie bit à bit**.
 
 ]
 
@@ -914,7 +912,7 @@ Remarque: il est possible de tricher et d'implémenter `Copy` sur un objet qui n
 
 Mais ça va à l'encontre des conventions de Rust (ce qui est coûteux en termes de performances doit être explicite dans le code)
 
---- 
+---
 
 
 .left-column[
@@ -940,7 +938,7 @@ Quand on «copie» un objet c'est la méthode clone qui est appelée impliciteme
 Ici c'est la propriété: peut être cloné sans impact pour les performances, et de manières implicite
 
 
---- 
+---
 
 
 .left-column[
@@ -954,7 +952,7 @@ Ici c'est la propriété: peut être cloné sans impact pour les performances, e
 ]
 ???
 Demander aux élèves
---- 
+---
 ## Reference-counting
 
 On va utiliser un type de _“smart-pointers”_, qui contiennent à la fois:
@@ -970,7 +968,7 @@ C'est le fonctionnement de la gestion de la mémoire en Objectif-C, ou Swift
 
 Les smart pointeurs sont présents directement dans la stdlib
 on ne peut pas en coder un nous-même sans utiliser la variante `unsafe` du langage
---- 
+---
 
 
 .left-column[
@@ -983,7 +981,7 @@ on ne peut pas en coder un nous-même sans utiliser la variante `unsafe` du lang
 ]
 ???
 
---- 
+---
 
 
 .left-column[
@@ -998,7 +996,7 @@ on ne peut pas en coder un nous-même sans utiliser la variante `unsafe` du lang
 ???
 
 Performance
---- 
+---
 
 
 .left-column[
@@ -1025,7 +1023,7 @@ Que se passe-t-il dans le cas suivant ?
 ]
 ???
 
---- 
+---
 
 .left-column[
   ## Reference-counting
@@ -1054,7 +1052,7 @@ Que se passe-t-il dans le cas suivant ?
 
 En pratique ce cas arrive très rarement, mais il faut l'avoir en tête pour ne pas se faire avoir
 
---- 
+---
 
 
 .left-column[
@@ -1063,14 +1061,14 @@ En pratique ce cas arrive très rarement, mais il faut l'avoir en tête pour ne 
 ]
 .right-column[
 Il y a deux types de _smart-pointers_ qui font du _reference counting_:
-    - `Rc`, qui n'est pas thread-safe, et sert rarement
-    - `Arc`, qui est thread-safe, et qui sert beaucoup plus souvent
+- `Rc`, qui n'est pas thread-safe, et sert rarement
+- `Arc`, qui est thread-safe, et qui sert beaucoup plus souvent
 ]
 ???
 
 Q: Ça veut dire quoi être thread-safe pour un reference-counting pointer?
 
---- 
+---
 .left-column[
   ## Reference-counting
   ## `Arc`
@@ -1095,7 +1093,7 @@ Q: Ça veut dire quoi être thread-safe pour un reference-counting pointer?
 
 On expliquera plus tard ce que sont les `move ||`
 
---- 
+---
 .left-column[
   ## Reference-counting
   ## `Arc`
@@ -1115,14 +1113,14 @@ On expliquera plus tard ce que sont les `move ||`
     });
 ```
 
-On a besoin d'un `Arc` ici, parce qu'on ne sait pas quel thread se terminera en premier.
-On ne sais donc pas lequel doit avoir le droit de libérer la mémoire allouée pour la String
+- On a besoin d'un `Arc` ici, parce qu'on ne sait pas quel thread se terminera en premier.
+- On ne sais donc pas lequel doit avoir le droit de libérer la mémoire allouée pour la String
 ]
 ???
 
 Cas de figure super classique: si on a une donnée partagée entre plusieurs threads, en général on n'a pas de garantie sur le thread qui vit le plus longtemps
 
---- 
+---
 .left-column[
   ## Reference-counting
   ## `Arc`
@@ -1166,8 +1164,8 @@ Demander à un élève de passer au tableau et de ré-expliquer en 2 minutes
   ## TP (suite)
 ]
 .right-column[
-Maintenant on veut pouvoir prendre argument en entrée du programme (en CLI)
-Et envoyer celui-ci à la machine distante lors de chaque connection.
+- Maintenant on veut pouvoir prendre argument en entrée du programme (en CLI)
+- Et envoyer celui-ci à la machine distante lors de chaque connection.
 
 Doc à regard: 
 - `std::env`
@@ -1177,7 +1175,7 @@ Doc à regard:
 ???
 
 
---- 
+---
 .left-column[
   ## TP (Suite)
 ]
@@ -1234,7 +1232,7 @@ fn handle_connection(mut stream: TcpStream, message: &str) {
 
 Ici on utilise thread::scope => pas de problème d'ownership
 
---- 
+---
 .left-column[
   ## TP (suite)
 ]
@@ -1283,7 +1281,7 @@ Si on veut utiliser thread::spawn, il faut utiliser Arc.
 
 Remarque: `move` closure et `String::from` => on verra ça après
 
---- 
+---
 .left-column[
 ## Les aménagements
 ]
@@ -1291,7 +1289,7 @@ Remarque: `move` closure et `String::from` => on verra ça après
 ## Aménagements aux règles de borrowing
 ]
 ???
---- 
+---
 .left-column[
 ## Les aménagements
 ## Borrowing
@@ -1302,7 +1300,7 @@ Parfois, on voudrait aussi avoir plusieurs références mutables à un objet.
 Mais il ne faut pas que ça remette en question la garantie du Rust contre les data-race.
 ]
 ???
---- 
+---
 .left-column[
 ## Les aménagements
 ## Borrowing
@@ -1312,7 +1310,7 @@ Mais il ne faut pas que ça remette en question la garantie du Rust contre les d
 _“Interior mutability”_
 ]
 ???
---- 
+---
 .left-column[
   ## _Interior mutability_
 ]
@@ -1326,7 +1324,7 @@ Ils garantissent **à l'éxecution** que la variable n'est pas lue et écrite en
 De la même manière que les reference-counted pointed garantissent que la variable sera bien désalouée une et une seule fois.
 ???
 
---- 
+---
 .left-column[
   ## _Interior mutability_
 ]
@@ -1339,7 +1337,7 @@ Deux variantes:
 
 Les RefCell ne servent presque jamais, les locks servent très souvent.
 
---- 
+---
 
 .left-column[
   ## _Interior mutability_
@@ -1356,8 +1354,8 @@ Les RefCell ne servent presque jamais, les locks servent très souvent.
   ## TP (suite)
 ]
 .right-column[
-On veut maintenant que notre programme compte le nombre d'octets qu'il a reçu sur le réseau, toute connection confondue
-Et écrire dans la console ce nombre toute les 3 secondes
+- On veut maintenant que notre programme compte le nombre d'octets qu'il a reçu sur le réseau, toute connection confondue
+- Et écrire dans la console ce nombre toute les 3 secondes
 
 Doc utile: 
 - `std::thread::sleep`
@@ -1366,7 +1364,7 @@ Doc utile:
 ???
 
 
---- 
+---
 
 
 .left-column[
@@ -1487,6 +1485,7 @@ c.f. https://users.rust-lang.org/t/can-we-make-a-mut-str/93448/3
 ## `String`
 
 Ce sont des chaines de caractère dynamiques.
+
 Elles sont allouées sur le tas, et peuvent donc être redimensionnées.
 
 ```Rust
@@ -1721,9 +1720,9 @@ Je vous le dit en passant mais vous n'en aurez pas besoin ;)
 template: inverse
 ## Gestion d'erreur
 ---
-
-### Les erreurs «irrécupérables»
-### Les erreurs «gérables»
+template: kevin_splash
+## Les erreurs «irrécupérables»
+## Les erreurs «gérables»
 
 ---
 ### Les erreurs «irrecupérables»: `panic`
@@ -1756,7 +1755,7 @@ Une `panic` se comporte comme une exception dans d'autre langages:
 Si un mutex est locké au moment ou elle se déclenche le mutex devient «empoisonné»
 
 ---
-
+template: kevin_splash
 ## Ils servent à matérialiser des erreurs peu fréquentes mais susceptibles d'arriver dans presque toutes les fonctions.
 
 ???
@@ -2100,8 +2099,8 @@ fn ma_fonction() -> Result<(), String>{
 ```
 
 ---
-template:inverse
-### Comment faire s'il y a plusieurs types d'erreurs
+class: inverse
+## Comment faire s'il y a plusieurs types d'erreurs
 
 ```Rust
 
@@ -2241,7 +2240,7 @@ Implémenter la gestion d'erreur
 
 ???
 
---- 
+---
 template: inverse
 # Retour sur l'ownership et le borrowing
 
@@ -2527,6 +2526,10 @@ error[E0277]: `RefCell<String>` cannot be shared between threads safely
 ```
 
 ---
+template: inverse
+## Des question ?
+
+---
 templace: inverse
 ## Lifetimes
 ???
@@ -2686,3 +2689,153 @@ Comme s'il possédait l'objet tout seul.
 
 C'est un pointeur avec une lifetime illimitée
 
+---
+template: inverse
+## Des question ?
+
+---
+template: inverse
+# Les itérateurs
+
+---
+
+## Les itérateurs
+
+Comme la plupart des langages récents, Rust a des itérateurs 
+
+Ça permet d'itérer avec un boucle `for` sur des collections diverse
+
+```Rust
+let x = vec![1,2,3,4];
+for i in x {
+  println!("{i}");
+}
+```
+
+???
+
+Ça marche sur les vecteurs, les Hashmaps, les tableaux, et tout un tas d'objets qui implémentent la bonne iterface.
+
+---
+
+## Les combinateurs
+
+```Rust
+vec![1, 2, 3, 4, 5, 6, 7, 8]
+    .iter()
+    .map(|x| x + 3)
+    .fold(0, |x, y| x + y)
+```
+
+[https://jethrogb.github.io/rust-combinators/](https://jethrogb.github.io/rust-combinators/)
+
+???
+
+Vous avez tous déjà vu ce type d'opérations dans d'autres langages?
+
+fold est l'équivalent d'un `.reduce` en Javascript.
+
+---
+
+### Les particularités
+
+```Rust
+let v: u32 = vec![1,2,3];
+
+v.iter(); // un itérateur de &u32 
+v.iter_mut(); // itérateur de &mut u32
+v.into_iter(); // iterateur de u32, prend l'ownership de tout le tableau
+```
+
+???
+
+`IntoIterator` et `Iterator`
+
+---
+
+### Passer d'un iterateur à une collection
+
+`.collect`
+
+```Rust
+let v = vec![("Georges", 73u32), ("Jean-Michel", 54), ("Guillaume", 34)];
+
+let h: HashMap<&'static str, u32> = vec.into_iter().collect();
+```
+???
+Ça ne marche que si la conversion a un sens.
+
+---
+template: inverse
+## Retour sur la pile et le tas: `Sized`
+
+???
+
+Qu'est-ce que vous avez retenu sur la stack et le tas?
+
+---
+## La pile et la taille
+
+L'allocation sur la pile (stack) => taille connue à la compilation*
+
+Pour tout ce qui de taille variable ou inconnue à la compilation, il faut stocker ça sur la pile (stack).
+
+???
+
+Encore une fois, ce n'est pas strictement vrai (alloca / VLA), mais en Rust ça l'est
+
+---
+## `Sized`
+
+Ce qui est de taille connue a le trait `Sized`.
+
+Presque tout en Rust est `Sized`
+
+???
+
+Une idée des exceptions ?
+---
+## `!Sized`
+
+Ne sont pas `Sized`:
+- les slices : `[u8]`
+- les string slices : `str`
+- les _“trait objects”_ : `dyn MonTrait`
+
+Ce qui n'est pas `Sized` ne peut pas être stocké dans une variable directment.
+
+Il faut forcément que ça passe par un «pointeur».
+- `&[u8]` est `Sized` (sa taille vaut 2 fois la taille d'un `usize`)
+
+
+???
+Les variables sont stockées dans la stack
+
+---
+
+```Rust
+use std::sync::Arc;
+
+fn main(){
+    dbg!(std::mem::size_of::<usize>());
+    dbg!(std::mem::size_of::<&str>());
+    dbg!(std::mem::size_of::<&[u8]>());
+    dbg!(std::mem::size_of::<Box<u8>>());
+    dbg!(std::mem::size_of::<Arc<u8>>());
+    dbg!(std::mem::size_of::<Vec<u8>>());
+    dbg!(std::mem::size_of::<Arc<str>>());
+    dbg!(std::mem::size_of::<Box<str>>());
+}
+```
+---
+
+```
+[src/main.rs:4:5] std::mem::size_of::<usize>() = 8
+[src/main.rs:5:5] std::mem::size_of::<&str>() = 16
+[src/main.rs:6:5] std::mem::size_of::<&[u8]>() = 16
+[src/main.rs:7:5] std::mem::size_of::<Box<u8>>() = 8
+[src/main.rs:8:5] std::mem::size_of::<Arc<u8>>() = 8
+[src/main.rs:9:5] std::mem::size_of::<Vec<u8>>() = 24
+[src/main.rs:10:5] std::mem::size_of::<Arc<str>>() = 16
+[src/main.rs:11:5] std::mem::size_of::<Box<str>>() = 16
+```
