@@ -43,6 +43,34 @@ template: kevin_splash
 
 Langage puissant, donc difficile, et enseignement très court, il va falloir s'accrocher.
 
+Je vais me concentrer sur les aspects **durs** et conceptuels en cours
+
+Posez-moi des questions !!!
+
+Il y a plein de documents sur les fonctionalités un peu basiques du langage sur internet
+
+---
+
+.left-column[
+  ## Ressources
+]
+.right-column[
+- Le site du cours : [https://stymaar.github.io/ESIEA-Rust/](https://stymaar.github.io/ESIEA-Rust/)
+- le forum officiel : [https://users.rust-lang.org/](https://users.rust-lang.org/)
+- **Le Discord: [https://discord.gg/hUfEpjwQ](https://discord.gg/hUfEpjwQ) et particulièrement le channel `#beginners`**
+- [le subreddit](https://reddit.com/r/rust)
+]
+
+???
+
+Je poste les slides sur le site du cours
+
+Ne pas négliger le discord, c'est une mine d'or.
+
+C'est comme ChatGPT vous posez une question et vous avez la réponse presque immédiatement
+
+Sauf que, contrairement à ChatGPT, les réponses sont correctes …
+
 ---
 
 .left-column[
@@ -65,7 +93,7 @@ template: inverse
 ]
 .right-column[
 ### Est-ce que vous êtes tous inscrits?
-[liste des projets](TODO) et le [tableur de formation des groupes](https://lite.framacalc.org/vjzts0h8lk-a7cx)
+[liste des projets](https://stymaar.github.io/ESIEA-Rust/projets.html) et le [tableur de formation des groupes](https://lite.framacalc.org/vjzts0h8lk-a7cx)
 ]
 ---
 
@@ -118,15 +146,44 @@ template: inverse
 ]
 .right-column[
 ### Deux problèmes
-- le schisme entre les languages natifs et les languages «managés»
-- le problème du multithreading
+- la gestion de la mémoire
+- le multithreading
 ]
 
 ---
-
-
 .left-column[
   ## Deux problèmes
+  ### La gestion de la mémoire
+]
+.right-column[
+Les programmes ont besoin de mémoire pendant un certain temps.
+La mémoire n'est pas infinie.
+Donc quand ils n'en ont plus besoin il faut la désallouer.
+]
+
+???
+Exception des missiles
+
+---
+.left-column[
+  ## Deux problèmes
+  ### Langage natif vs language managé
+]
+.right-column[
+2 options:
+- Le développeur est en charge de désallouer sa mémoire lui-même (langage «natif»)
+- un sous-programme tourne en tâche de fond et libère la mémoire quand elle n'est plus nécessaire (langage «managé»)
+
+]
+???
+
+le terme «langage managé» vient de Microsoft
+
+Avec un langage managé le développeur peut faire «comme si» la mémoire était infinie
+
+---
+
+.left-column[
   ### Langage natif vs language managé
 ]
 .right-column[
@@ -136,8 +193,6 @@ template: inverse
 - résultat: [70% des failles de sécurité](https://www.chromium.org/Home/chromium-security/memory-safety/) viennent d'une [mauvaise gestion de la mémoire](https://msrc.microsoft.com/blog/2019/07/a-proactive-approach-to-more-secure-code/)
 ]
 ???
-
-le terme «langage managé» vient de Microsoft
 
 Le chiffre de 70% vient de Microsoft et de l'équipe Chromium de Google (j'ai mis les 2 liens)
 
@@ -324,6 +379,9 @@ Quand on passe une variable _par valeur_ à une fonction ou à un autre objet, l
     my_function(a);
     let b = a; // ERROR: use of moved value: `a`
 ```
+
+On parle de _“move semantics”_
+
 ]
 
 ???
@@ -1388,5 +1446,1243 @@ Doc utile:
 
 
 ---
+template: inverse
+## Les chaines de caractères
 
+---
+
+Il y a deux objets principaux pour manipuler des chaines de caractères en Rust.
+- les `String`, qui sont des chaines de caractères allouées sur le tas
+- les _“string slices”_ `&str`, qui sont une référence à une chaine de caractère allouée ailleurs
+
+???
+
+---
+## Les “string slices”
+
+`str` désigne un morceau dans une chaine de caractères allouée quelque part.
+
+```Rust
+  let s = String::from("hello world");
+
+  // s[0..5] est un «morceau» de chaine de caractère
+  let hello = &s[0..5];
+  let world = &s[6..11];
+```
+
+On ne peut pas le manipuler directement.
+
+On le manipule nécessairement derrière une référence: `&str`.
+
+???
+
+On ne peut pas en changer le contenu ou la taille.
+
+On peut en théorie aussi utiliser une slice _mutable_ de string, mais ça ne sert presque jamais.
+c.f. https://users.rust-lang.org/t/can-we-make-a-mut-str/93448/3
+
+
+---
+
+## `String`
+
+Ce sont des chaines de caractère dynamiques.
+Elles sont allouées sur le tas, et peuvent donc être redimensionnées.
+
+```Rust
+let mut s = String::new();
+
+s.push('h');
+s.push('e');
+s.push('l');
+s.push('l');
+s.push('o');
+
+assert_eq!("hello", s);
+```
+---
+
+## `String`
+
+Elles peuvent être transformée en `&str`.
+
+```Rust
+let string = String::from("Aaaaah");
+let s: &str = string.as_str();
+// ou
+let ss: &str = string[..];
+```
+
+---
+Mais en général, on n'a pas besoin de faire ça.
+
+```Rust
+fn toto(s: &str){
+  //do something here
+}
+
+let string = String::from("Aaaaah");
+
+toto(&string); // ça marche alors que le type de &string est `&String`
+```
+
+---
+
+
+[_“deref coercion”_](https://doc.rust-lang.org/book/ch15-02-deref.html)
+
+```Rust
+
+let arc_str = Arc::new(String::from("C'est magique"));
+
+toto(&string); // margique &Arc<String> => &str
+
+toto(&(*string)[..]); // sans la “deref coercion”
+```
+
+???
+
+Magie pour éviter de nous emmerder
+
+Ça marche pour tous les smart pointers!
+
+---
+
+## Qu'est-ce que c'est
+
+```Rust
+let hello = "Hello world";
+```
+
+???
+
+Quel est le type de `hello`?
+Où est-ce que la donnée est stockée en mémoire?
+---
+
+## _“String litteral”_
+
+- Les chaines de caractères écrites en dur dans le code sont des _“string litteral”_.
+- La donnée est directement stockées dans le fichier exécutable (section `.data`)
+- elles sont de type `&str`
+- Ce sont des références qui vivent aussi longtemps que le programme lui-même (leur lifetime est «infinie»)
+
+???
+
+On parlera des lifetimes plus tards
+---
+
+## Variantes
+
+```Rust
+let s = "Hello".to_string(); // <= le plus classique
+let t = "Bonjour".to_owned();
+let u = String::from("Hallo"); // mon favoris
+let v = "Hola".into(); // From/Into traits
+```
+---
+
+## “Raw” string litteral
+
+```Rust
+let string: &str = r#"Ceci est une chaîne de caractère 
+sur plusieurs lignes
+Et qui peut contenir des guillemets " sans avoir besoin d'être échapées.
+"#;
+```
+
+Et si on veut mettre  `"#` dans la chaine de caractère: on augmente le nombre de `#` dans le délimiteur
+
+```Rust
+let s = r##"Ceci est Un "raw string litteral": 
+r#"Hello"# 
+"##;
+```
+---
+
+## Mise en forme de chaîne de caractères
+
+```Rust
+let name = "Victor";
+let age = 20;
+
+let caption: String = format!("{} a {} ans", name, age); // Victor a 20 ans.
+```
+
+Pour les variables on peut même écrire:
+
+```Rust
+let name = "Rudy";
+let age = 31;
+
+let caption: String = format!("{name} a {age} ans"); // Rudy a 31 ans.
+```
+
+???
+
+Mais pas un truc plus compliqué
+
+C'est quoi le bug dans mes deux exemples ?
+
+---
+### Ça marche aussi avec les _“raw string litterals”_
+
+```Rust
+let title = "Ut velit mauris, egestas sed, gravida nec";
+let paragraph = " Lorem ipsum dolor sit amet, consectetur adipiscing.";
+let html = format!(r#"
+  <article>
+    <h1>{title}<h1>
+    <p>
+      {paragraph}
+    </p>
+  </article>"#);
+```
+
+## ⚠️ NE FAITES JAMAIS ÇA EN VRAI ! 😱😱😱
+
+C'est la recette parfaite pour une attaque XSS
+
+???
+
+On ne formate jamais du HTML, du JSON, du SQL ou **n'importe quoi qui a vocation à être lu par une machine**
+parce que ça ne fait aucun échapement.
+C'est aussi idiot que de pousser un truc dans un mixeur avec ses doigts
+
+---
+
+## `Display`
+
+Pour pouvoir utiliser une variable dans une mise en forme de chaîne de caractère, il faut que le type de celle-ci implémente le [trait `std::fmt::Display`](https://doc.rust-lang.org/std/fmt/trait.Display.html)
+
+Remarque: ce trait ne se `#[derive]` pas, il faut l'implémenter à la main.
+
+???
+
+Ce trait est destiné à l'affichage à destination d'un utilisateur
+
+---
+### `Debug`
+
+Parfois on n'a besoin d'afficher le contenu d'un objet dans une chaîne de caractère uniquement pour raison technique.
+
+Et dans ce cas on n'a besoin que du trait `Debug`, qui lui se dérive.
+
+On l'utilise avec `{:?}` ou `{ma_variable:?}`
+
+```Rust
+#[derive(Debug)]
+struct Point2D {
+  x: f32,
+  y: f32
+}
+
+fn main(){
+  let p = Point2D{ x: 0.0, y: 1.0};
+
+  println!("Debug string for Point p: {p:?}");
+}
+// Debug string for Point p: Point2D { x: 0.0, y: 1.0 }
+```
+
+???
+
+Logs, rapports d'erreurs, println! de débug
+
+En pratique, en carricaturant pratiquement toutes vos structs auront un #[derive(Debug)]
+
+---
+## UTF-8
+
+Les `String` et `&str` sont nécessairement des chaîne de caractère correctement encodée en UTF-8.
+
+Si vous recevez des `Vec<u8>` ou `&[u8]` qui représentent de l'UTF-8 (sur le réseau par exemple), les convertir en `String` nécessite une validation.
+
+```Rust
+String::from_utf8(vec: Vec<u8>) -> Result<String, FromUtf8Error>
+```
+
+Il existe aussi d'autres types de chaines de caractères qui répondent à des usages spécifiques
+- `&CStr`/`CString`: pour intéragir avec du C
+- `OsStr` / `OsString`: pour intéragir avec l'OS
+- `Path`/`PathBuf`: pour les chemins de fichier
+- `Cow<'a, str>`: pour des chaînes de caractères copy-on-write
+
+???
+
+Il y a aussi le `from_utf8_lossy` qu'on a utilisé plus haut
+
+Path et PathBuf sont des wrapper au dessus de OsStr avec des fonctionalités en plus
+
+Je vous le dit en passant mais vous n'en aurez pas besoin ;)
+
+
+---
+template: inverse
+## Gestion d'erreur
+---
+
+### Les erreurs «irrécupérables»
+### Les erreurs «gérables»
+
+---
+### Les erreurs «irrecupérables»: `panic`
+
+```Rust
+fn main() {
+  panic!("Fait planter le programme");
+}
+```
+
+```
+thread 'main' panicked at src/main.rs:2:5:
+Fait planter le programme
+```
+
+???
+
+Si un panic se produit dans le thread principal
+
+---
+### Les erreurs «irrecupérables»: `panic`
+
+Une `panic` se comporte comme une exception dans d'autre langages:
+- elle est invisible dans la signature de la fonction
+- elle se propage vers le haut de la pile d'appel et interrompt toute les fonctions
+- ⚠️ elle s'arrête au niveau du thread où elle est déclenchée
+
+???
+
+Si un mutex est locké au moment ou elle se déclenche le mutex devient «empoisonné»
+
+---
+
+## Ils servent à matérialiser des erreurs peu fréquentes mais susceptibles d'arriver dans presque toutes les fonctions.
+
+???
+
+Et pour lesquelles on ne veut pas polluer tous les types de retours des fonctions
+
+---
+
+### Exemples
+Les tentative d'accès à un tableau au delà de la longueur du tableau
+
+```Rust
+let t = vec![1,2,3,6,14,21];
+let x = t[6]; // panique
+```
+Les overflows lors d'opérations arithmétique (seulement en mode debug)
+
+```Rust
+// si je passe n = 250, il y a un overflow
+fn add_35(n: u8) -> u8{
+  n + 35
+}
+```
+
+???
+Et on ne veut pas poluer toutes les fonctions avec des `Result` pour autant
+---
+
+### La plupart des opérations susceptibles de `panic` ont un équivalent «faillible»
+
+La [méthode `get`](https://doc.rust-lang.org/std/primitive.slice.html#method.get) pour accéder aux élements d'un tableau
+
+```Rust
+let t = vec![1,2,3,6,14,21];
+let Some(x) = t.get(6) else{
+  //do something if we don't find the element
+};
+```
+
+La [methode `checked_add`](https://doc.rust-lang.org/std/primitive.u32.html#method.checked_add) pour additionner des entiers
+
+```Rust
+// si je passe n = 250, il y a un overflow et la fonction retourn None
+fn add_35(n: u8) -> Option<u8>{
+  n.check_add(35)
+}
+```
+
+???
+
+Mais si on devait faire que ça, ça serait chiant
+---
+template: inverse
+# Les `panic` ne sont pas un mécanisme de gestion d'erreur normal en Rust
+
+???
+
+Il existe un mécanisme pour les attraper et en bloquer la propagation
+pas fait pour remplacer des exceptions
+fait pour éviter qu'un panic ne foute la merde dans du code natif qui appelle du code Rust
+
+---
+template: inverse
+## Ils ne doivent se produire que s'il y a un BUG dans un programme
+
+---
+
+## Les erreurs gérables: `Result<T,E>`
+
+En Rust, une fonction susceptible de retourner un erreur retourne un objet de type `Result<T,E>`.
+
+Un `Result` est une `enum` a qui deux variants:
+
+```Rust
+enum Result<T,E>{
+  Ok(T),
+  Err(E),
+}
+```
+
+???
+
+On peut ainsi savoir quelle fonction est susceptible de générer une erreur ou non
+
+C'est la définition de la stdlib
+
+---
+### Les erreurs
+
+Le type d'erreur dans un result peut être n'importe quoi.
+
+Souvent c'est une `enum`:
+
+```Rust
+
+enum MyError {
+  InvalidPassword,
+  UnknownUser,
+  Timeout,
+}
+
+```
+---
+### Les erreurs
+
+Le type d'erreur dans un result peut être n'importe quoi.
+
+Ça peut-être une `struct`
+
+```Rust
+struct MyError{
+  error_code: u32,
+  error_message: String
+}
+```
+---
+### Les erreurs
+
+Le type d'erreur dans un result peut être n'importe quoi.
+
+Ou simplement une chaîne de caractère
+
+```Rust
+fn add_without_overflow(a: u32, b: u32) -> Result<u32, String> {
+  let Some(sum) = a.checked_add(b) else {
+    Err(format!("Trying to add {a} and {b} resulted in an overflow"));
+  }
+  Ok(sum)
+}
+```
+
+---
+### Les erreurs
+
+Bonne pratique:
+- une `enum`
+- qui implémente le [trait `std::error::Error`](https://doc.rust-lang.org/std/error/trait.Error.html)
+
+???
+
+On va voir juste après comment on fait ça
+
+---
+template: inverse
+## Comment gérer les erreurs
+
+---
+### Niveau 0: `unwrap()`
+
+```Rust
+
+fn get_something() -> Result<String, String> {
+  todo!()
+}
+
+fn ma_fonction(){
+  let string = get_something().unwrap(); 
+}
+
+```
+
+`unwrap` transforme une erreur en `panic`
+
+todo!()
+
+---
+### Niveau 0: `unwrap()`
+
+C'est la version _“quick n'dirty”_ **pendant le développement**.
+
+Vous ne livrez **jamais ça** en l'état.
+
+???
+
+Quand vous êtes en train d'itérer sur votre proto
+Comme ça vous ne vous embêtez pas avec la gestion d'erreur
+et vous avez le même type de fonctionnement que pratiquement tous les langages
+
+---
+### La gestion d'erreur correcte
+
+On fait le tour des `unwrap()` qu'on a laissé et on avise:
+- si c'est une situation qui ne doit pas se produire => `expect()` + justification
+- si on peut agir pour compenser l'erreur => on le fait (retry, plan B, etc.)
+- sinon, on remonte l'erreur au niveau du dessus
+
+???
+
+Cette étape est inédite dans les autres langages: 
+puisque vous avez du mettre `unwrap()` partout, vous pouvez ensuite faire un ctrl-F 
+et vous poser les bonnes question sur ce que vous devez faire de cette erreur
+Là où dans la plupart des langages, les erreurs sont généralement invisibles à cause des exceptions
+
+---
+
+### Situation qui ne doit pas se produire
+
+On sait qu'une situation ne se produira pas (sauf si jamais on a raté un bug ailleurs).
+
+Exemples:
+
+Vous savez qu'un tableau ne peut pas être vide à un moment donné
+
+```Rust
+let last_element = vec.last()
+    .expect("the vector is not empty");
+```
+
+Vous savez qu'une chaîne de caractère est forcément un UUID valide
+
+```Rust
+let uuid = string.into_uui().expect("the string is always a valid uuid");
+```
+
+???
+
+UUID: parce que ça vient de votre base de données
+On parle de situation où ça ne sert à rien d'avoir une gestion d'erreur dédiée, puisque ça **ne peut pas** arriver
+
+---
+
+### Situation qui ne doit pas se produire
+
+Autre cas d'utilisation: un mutex est «empoisonné».
+
+```Rust
+b.lock().expect("Mutex is poisoned");
+```
+
+???
+
+Si un autre thread a paniqué pendant qu'il détenait le lock sur le mutex.
+Ce n'est pas censé arriver puisque vous n'êtes pas censé avoir de panic dans vos autres threads…
+C'est utile pour faire des systèmes critiques haute disponibilité, mais pas pour vous!
+
+---
+### On peut agir pour compenser l'erreur
+
+Dans certains cas, il y a un moyen simple d'agit pour compenser l'erreur:
+- on essaye de renvoyer la requête
+- on affiche un message d'erreur à l'utilisateur en lui demandant de corriger son erreur
+- on envoie la requête à un serveur de _“failover”_
+- utiliser une valeur par défaut
+- on cherche le fichier à un autre endroit
+- on essaie un autre format de désérialisation
+- etc.
+
+???
+
+---
+
+### On peut agir pour compenser l'erreur
+
+Exemple: utiliser une valeur par défaut
+
+```Rust
+fn main(){
+  let response = match fetch_something() {
+    Ok(res) => res,
+    Err(err) => {
+      eprintln!("Could not get a response from the server, using default value");
+      String::from("This is the default value")
+    }
+  }
+}
+
+```
+---
+
+### On peut agir pour compenser l'erreur
+
+On peut écrire ça plus simplement:
+
+```Rust
+fn main(){
+  let Ok(response) = fetch_something() else {
+      eprintln!("Could not get a response from the server, using default value");
+      String::from("This is the default value")
+  };
+}
+```
+
+ou encore (si on ne veut pas afficher de logs d'erreur)
+
+```Rust
+fn main(){
+  let response = fetch_something().unwrap_or(String::from("This is the default value"));
+}
+```
+
+[https://jethrogb.github.io/rust-combinators/](https://jethrogb.github.io/rust-combinators/)
+
+???
+
+`eprintln!` c'est comme `println` mais ça affiche dans stderr et pas stdout
+
+C'est une mine d'or
+
+---
+### Remonter l'erreur
+
+Dans la majorité des cas, la fonction où se produit l'erreur ne sait pas quelle est l'opération de compensation à mener.
+
+???
+
+Le module qui gère l'accès au réseau ne sais pas comment afficher une erreur à l'utilisateur pour lui dire de vérifier sa connexion internet.
+---
+### Remonter l'erreur
+
+```Rust
+fn ma_fonction() {
+  let string = get_something().unwrap(); 
+}
+```
+
+devient
+
+```Rust
+fn ma_fonction() -> Result<(), String>{
+  let string = get_something()?; // note the `?`
+}
+```
+
+???
+
+Result<(), E> veut dire que la fonction n'a pas de valeur de retour, mais qu'elle a une erreur
+
+---
+### Remonter l'erreur
+
+Le symbole `?` est un «sucre syntaxique» pour:
+
+```Rust
+fn ma_fonction() -> Result<(), String>{
+  
+  let string = match get_something(){
+    Ok(string) => string,
+    Err(error) => return Err(error.into()),
+  };
+}
+```
+
+---
+template:inverse
+### Comment faire s'il y a plusieurs types d'erreurs
+
+```Rust
+
+fn foo()-> Result<String, FooError>{
+  todo!();
+}
+fn bar(s: &str)-> Result<String, BarError>{
+  todo!();
+}
+
+fn ma_fonction() -> Result<String, ??? >{ // Qu'est-ce qu'on met dans le type d'erreur ici
+  let first_string = foo()?;
+  let second_string = bar(&first_string)?;
+}
+```
+
+???
+
+Des idées?
+
+---
+### Conversion d'erreur
+
+Le symbole `?` effectue une conversion automatique de l'erreur source vers l'erreur de destination, via le trait `Into`.
+
+C'est à dire:
+
+```Rust
+
+enum OuterError{
+  FooErr,
+  BarErr,
+};
+
+impl Into<OuterError> for FooError {
+    fn into(self) -> OuterError {
+        OuterError::FooErr
+    }
+}
+
+impl Into<OuterError> for BarError {
+    fn into(self) -> OuterError {
+        OuterError::BarErr
+    }
+}
+
+
+fn foo()-> Result<String, FooError>{
+  todo!();
+}
+fn bar(s: &str)-> Result<String, BarError>{
+  todo!();
+}
+
+fn ma_fonction() -> Result<String, OuterError >{ 
+  let first_string = foo()?;
+  let second_string = bar(&first_string)?;
+}
+
+```
+???
+
+En pratique on n'implémente pas `Into` nous-même: 
+- orphan rule + trait `From`
+
+---
+### Conversion d'erreur
+
+```Rust
+
+enum OuterError{
+  FooErr,
+  BarErr,
+};
+
+impl From<FooError> for OuterError {
+    fn into(err: FooError) -> OuterError {
+        OuterError::FooErr
+    }
+}
+
+impl From<BarError> for OuterError {
+    fn into(err: FooError) -> OuterError {
+        OuterError::BarErr
+    }
+}
+
+fn foo()-> Result<String, FooError>{
+  todo!();
+}
+fn bar(s: &str)-> Result<String, BarError>{
+  todo!();
+}
+
+fn ma_fonction() -> Result<String, OuterError >{ 
+  let first_string = foo()?;
+  let second_string = bar(&first_string)?;
+}
+
+```
+???
+
+Comme c'est un peu chiant on utilise this_error pour le faire à notre place
+
+ et surtout on utilise une lib pour le faire comme on veut
+---
+### Conversion d'erreur automatique
+
+La [crate `thiserror`](https://lib.rs/crates/thiserror) permet d'implémenter les conversions automatiquement!
+
+```bash
+cargo add thiserror
+```
+
+```Rust
+use thiserror::Error;
+
+#[derive(Error, Debug)]
+pub enum OuterError {
+    #[error("An error occured in function foo")]
+    FooErr(#[from] FooError),
+    #[error("An error occured in function bar")]
+    FooErr(#[from] BarError),
+}
+```
+
+???
+Ça implémente la conversion + les traits `Display` et `Error`
+
+---
+.left-column[
+  ## TP (suite)
+]
+.right-column[
+Implémenter la gestion d'erreur
+]
+
+???
+
+--- 
+template: inverse
+# Retour sur l'ownership et le borrowing
+
+???
+
+Maintenant qu'on a vu des trucs plus appliqués, on peut repartir un peu dans les concepts
+
+---
+### Moving out of a struct
+
+Si on prend l'_“ownership”_ d'un champs d'une structure, on bloque l'_“ownership”_ de toute la structure.
+
+```Rust
+#[derive(Debug)]
+struct Player {
+  name: String,
+  age: u8,
+}
+
+let steph = Player{name: String::from("Curry"), age: 36};
+let name = steph.name;
+
+println!("{:?}", steph); // ERROR: borrow of partially moved value: `steph`
+```
+
+???
+
+On peut toujours prendre des champs individuels, au sein de la fonction, mais la structure elle-même est bloquée
+
+---
+### Moving out of a struct
+
+Sauf si le type en question implémente `Copy`
+
+```Rust
+#[derive(Debug)]
+struct Player {
+  name: String,
+  age: u8,
+}
+
+let steph = Player{name: String::from("Curry"), age: 36};
+let age = steph.age;
+
+println!("{:?}", steph); // Ça marche
+```
+
+???
+
+Ici ça marche, parce qu'on a just **copié** l'age, on ne l'a pas **move**
+
+---
+### Moving out a reference
+
+Pour la même raison, on ne peut pas **prendre** un champs d'une référence à une struct
+
+```Rust
+fn toto(player: &Player){
+  let name = player.name; // cannot move out of `player.name` which is behind a shared reference
+}
+```
+
+On peut simplement prendre une référence à cet objet
+
+```Rust
+fn toto(player: &Player){
+  let name = &player.name;
+}
+```
+
+???
+
+Est-ce qu'il n'y a pas une exeption à cette règle ?
+
+
+---
+### Moving out a reference
+
+Sauf, encore une fois, si le type implémente Copy
+
+```Rust
+fn toto(player: &Player){
+  let age = player.age; // l'age est simplement copié, donc ça marche
+}
+```
+
+---
+### Le compilateur est d'une grande aide
+
+Si on reprend l'exemple ci-dessus:
+
+```Rust
+fn toto(player: &Player){
+  let name = player.name;
+}
+```
+l'erreur renvoyé par le compilateur est celle-ci
+
+```
+error[E0507]: cannot move out of `player.name` which is behind a shared reference
+  --> src/main.rs:17:14
+   |
+17 |   let name = player.name;
+   |              ^^^^^^^^^^^ move occurs because `player.name` has type `String`, which does not implement the `Copy` trait
+   |
+help: consider borrowing here
+   |
+17 |   let name = &player.name;
+```
+
+???
+
+Le compilateur est un assistant virtuel
+les erreurs sont généralement de grande qualité
+lisez-les!
+
+---
+template: inverse
+## Arc/Rc, quelle différence
+
+???
+
+Si vous vous souvenez, plus tôt je vous ai dit qu'il y avait 2 types de reference counting smart pointer
+c'est quoi la différence entre les deux ?
+Arc est thread-safe parce que le compteur est atomique
+Et si Rc n'est pas thread-safe, qu'est-ce qui se passe si on l'utilise dans un context multi-thread?
+
+---
+### Faisons le test
+
+```Rust
+use std::rc::Rc;
+use std::thread;
+
+
+fn main(){
+    let p = Rc::new(String::from("Toto"));
+
+    let p2 = p.clone();
+    thread::spawn(move ||{
+        println!("{}", &p2)
+    });
+}
+```
+
+```
+error[E0277]: `Rc<String>` cannot be sent between threads safely
+```
+
+---
+### Plus précisemment
+
+```
+error[E0277]: `Rc<String>` cannot be sent between threads safely
+   --> src/main.rs:9:19
+    |
+9   |       thread::spawn(move ||{
+    |       ------------- ^------
+    |       |             |
+    |  _____|_____________within this `{closure@src/main.rs:9:19: 9:26}`
+    | |     |
+    | |     required by a bound introduced by this call
+10  | |         println!("{}", &p2)
+11  | |     });
+    | |_____^ `Rc<String>` cannot be sent between threads safely
+    |
+    = help: within `{closure@src/main.rs:9:19: 9:26}`, the trait `Send` is not implemented for `Rc<String>`
+```
+
+---
+## Les traits `Send` et `Sync`
+
+Pour permettre au compilateur d'assurer que le code qu'on écrit est bien thread-safe.
+Rust dispose de deux `trait`s:
+- `Send`
+- et `Sync`
+
+---
+## Send
+
+Permet de dire: «cet objet peut être transféré d'un thread à un autre»
+**Presque tous les objets sont `Send` en Rust**
+
+Mais pas `std::rc::Rc`.
+
+???
+
+Est-ce que `Arc` est Send ?
+---
+### Send
+
+```Rust
+use std::sync::Arc;
+use std::thread;
+
+
+fn main(){
+    let p = Arc::new(String::from("Toto"));
+
+    let p2 = p.clone();
+    thread::spawn(move ||{
+        println!("{}", &p2)
+    });
+}
+```
+
+---
+### Vraiment ?
+
+```Rust
+use std::sync::Arc;
+use std::thread;
+
+
+fn main(){
+    let c = RefCell::new(String::from("Toto"));
+    let p = Arc::new(c);
+    let p2 = p.clone();
+    thread::spawn(move ||{
+        println!("{}", &p2)
+    });
+}
+```
+
+???
+
+Qu'est-ce qui va se passer ici ?
+
+---
+## `Arc` isn't always `Send`
+
+```
+error[E0277]: `RefCell<String>` cannot be shared between threads safely
+   --> src/main.rs:11:17
+    |
+11  |           s.spawn(|| {
+    |  ___________-----_^
+    | |           |
+    | |           required by a bound introduced by this call
+12  | |             println!("{}", p.borrow())
+13  | |         });
+    | |_________^ `RefCell<String>` cannot be shared between threads safely
+    |
+    = help: the trait `Sync` is not implemented for `RefCell<String>`, which is required by `{closure@src/main.rs:11:17: 11:19}: Send`
+    = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead
+```
+
+---
+## `Sync`
+
+Le trait `Sync` est là pour dire: «partager une référence à cet objet entre plusieurs thread est safe»
+
+**Presque tous les objets sont `Sync` en Rust**
+
+Mais pas `std::cell::RefCell`.
+
+---
+### Lien entre `Sync` et `Send`
+
+`Arc<T>` est `Send` si et seulement si `T: Sync`.
+`&T` est `Send` si et seulement si `T: Sync`.
+
+---
+### Locks are `Sync`
+
+`Mutex` et `RWLock` sont `Sync`.
+
+Et le message d'erreur vous aide:
+```
+error[E0277]: `RefCell<String>` cannot be shared between threads safely
+   --> src/main.rs:11:17
+    |
+11  |           s.spawn(|| {
+    |  ___________-----_^
+    | |           |
+    | |           required by a bound introduced by this call
+12  | |             println!("{}", p.borrow())
+13  | |         });
+    | |_________^ `RefCell<String>` cannot be shared between threads safely
+    |
+    = help: the trait `Sync` is not implemented for `RefCell<String>`, which is required by `{closure@src/main.rs:11:17: 11:19}: Send`
+    = note: if you want to do aliasing and mutation between multiple threads, use `std::sync::RwLock` instead
+```
+
+---
+templace: inverse
+## Lifetimes
+???
+
+Source de confusion fréquente
+
+---
+### Lifetime des références
+
+Toute les références ont une lifetime associée, qui est la durée de vie de la variable vers laquelle elle pointe.
+
+```Rust
+fn main(){
+  let a = 27;
+  {
+    let x = 42;
+  
+    let ref_x = &x;
+    let ref_a = &a;
+  }// la lifetime de ref_x se termine ici
+}// la lifetime de ref_a se termine là
+```
+---
+### Lifetime dans des types
+
+Comme on peut avoir des références comme champs d'une `struct` ou variante d'un `enum`, les `struct` et les `enum` peuvent aussi avoir une lifetime.
+
+Il faut la matérialiser dans la déclaration de la `struct`.
+
+```Rust
+struct BlaBla<'a>{
+  parole: &'a str
+}
+```
+
+Et recursivement
+
+```Rust
+enum Activities<'a>{
+  Boulot,
+  Dodo,
+  Blabla(BlaBla<'a>),
+}
+```
+???
+
+le 'a est un paramètre générique, il ne désigne rien de concret
+
+---
+### Tous les types ont une lifetime
+
+En réalité, tous les types ont une lifetime.
+
+Elle est simplement *illimitée* si le type ne contient pas de références.
+
+---
+### “Lifetime bound”
+
+Certaines fonctions ont une contrainte (“bound”) sur la lifetime des paramètres qu'elles acceptent.
+
+Par exemple la fonction `thread::spawn`.
+
+```Rust
+pub fn spawn<F, T>(f: F) -> JoinHandle<T>
+where
+    F: FnOnce() -> T + Send + 'static,
+    T: Send + 'static,
+```
+
+Ici `'static` veut simplement dire que l'objet en question doit avoir une lifetime illimitée.
+
+???
+
+`'static` devrait s'appeler `'unbounded`
+
+---
+### La lifetime `'static`
+
+Employé dans une contrainte `'static` = «lifetime illimitée».
+En général ça implique:
+- qu'on passe l'ownership
+- et que l'objet lui-même n'a pas une lifetime limitée par un de ses composants
+
+Mais il existe des références qui ont une lifetime illimitée.
+
+???
+Des idées
+
+---
+### Les objets statiques
+
+les “string litterals”
+```Rust
+let s: &'static = "message";
+```
+
+les “variables” globales (qui sont en fait constantes)
+
+```Rust
+static FOO: [i32; 5] = [1, 2, 3, 4, 5];
+```
+
+Les objets «leakés»
+
+```Rust
+let s = String::from("I will live forever");
+let static_string : &'static mut String = Box::leak(s);
+```
+
+---
+## Les erreurs liés à `'static`
+
+```Rust
+use std::sync::Arc;
+use std::thread;
+use std::cell::RefCell;
+
+fn main(){
+    let c = String::from("Toto");
+    thread::spawn(|| {
+        println!("{}", &c)
+    });
+}
+```
+
+```
+error[E0373]: closure may outlive the current function, but it borrows `c`, which is owned by the current function
+ --> src/main.rs:7:19
+  |
+7 |     thread::spawn(|| {
+  |                   ^^ may outlive borrowed value `c`
+8 |         println!("{}", &c)
+  |                         - `c` is borrowed here
+  |
+note: function requires argument type to outlive `'static`
+```
+
+???
+
+Qu'est-ce qui se passe ici ?
+
+La raison pour laquelle le truc doit avoir une lifetime illimitée ce n'est pour vous faire chier
+
+C'est parce que Rust doit être sur que la variable ne sera pas désallouée avant la fin du thread
+
+TODO ajouter un lien vers l'example ou on utilse thread::scope
+
+`'static` apparait presque qu'uniquement quand il y a des histoires de multithreading
+
+---
+## Arc est `'static`
+
+La raison pour laquelle on utilise `Arc` quand on fait un `thread::spawn` c'est que `Arc` a une lifetime illimitée.
+Comme s'il possédait l'objet tout seul.
+
+???
+
+C'est un pointeur avec une lifetime illimitée
 
