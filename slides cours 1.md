@@ -1,4 +1,3 @@
-
 name: inverse
 class: center, middle, inverse
 ---
@@ -78,8 +77,7 @@ Sauf que, contrairement à ChatGPT, les réponses sont correctes …
   ## Évaluation
 ]
 .right-column[
-Évaluation en 3 parties:
-- un devoir sur table (aujourd'hui)
+Évaluation en 2 parties:
 - votre participation pendant les séances (cours et TP) et sur le chat
 - **Un projet** et une présentation / démo
 ]
@@ -2839,3 +2837,108 @@ fn main(){
 [src/main.rs:10:5] std::mem::size_of::<Arc<str>>() = 16
 [src/main.rs:11:5] std::mem::size_of::<Box<str>>() = 16
 ```
+---
+## Les types récursifs sont impossibles
+
+```Rust
+enum Liste<T>{
+  Empty,
+  Paire(T, Liste<T>),
+}
+```
+
+```
+recursive type `Liste` has infinite size
+```
+---
+## `Box`
+
+```Rust
+enum Liste<T>{
+  Empty,
+  Paire(T, Box<Liste<T>>),
+}
+```
+
+---
+template: inverse
+## Les closures
+
+---
+## “Lambda”
+
+```JavaScript
+const f = (x, y) => x+y;
+```
+
+```Rust
+let f = |x, y| => x+y;
+```
+
+???
+
+
+“arrow function”
+
+Le type est inféré en fonction de la manière dont elle est utilisée
+
+---
+## Closure
+
+- "Capture" son environnement
+
+```Rust
+fn main(){
+  let x = String::from("Aller l'OM");
+  let f = || x.len();
+
+  (0..10).map(|_| f()).for_each(|n| println!("{n}"));
+}
+```
+
+---
+## Plusieurs types de closures
+
+Découle des règles d'ownership et de borrowing:
+- des closures qui prennent l'ownership
+- des closures qui prennent une référence exclusive `&mut`
+- des closures qui prennent une référence partagée `&`
+
+---
+## Celles qui prennent l'ownership
+
+Définie avec le mot clé `move`
+
+```Rust
+let x = String::from("Paris est magique");
+let f = move || x.len();
+```
+
+- Implémentent le trait `FnOnce`.
+- Ownership => lifetime = `'static` sauf si l'objet qu'elles capturent a une autre lifetime.
+
+---
+## Celles qui borrow
+
+Même syntaxe pour borrowing mutable ou non.
+Pas de mot clé.
+
+```Rust
+let x = String::from("Paris est magique");
+let f = |c| x.push_str(c); // String::push prend un &mut str
+```
+
+- si mutable: implémente les traits `FnOnce` et `FnMut`
+- si non mutable: implémente les traits `FnOnce`, `FnMut` et `Fn`
+
+Borrowing => lifetime contraine par la lifetime de l'objet vers lequel elle pointent
+
+(pas `'static` en général sauf exception)
+
+???
+
+mut ou non dépend de l'usage qui est fait de la variable.
+
+C'est quoi les exceptions
+
+Les noms des traits sont source de confusion => les closure non mutable implémentent tous les traits
