@@ -1058,17 +1058,34 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 
         </script>
         <div class="markdown-body">
-    <h1>Cours Rust ESIEA 2024</h1>
+    <h1>Tower defense (2D ou 3D)</h1>
+<p><strong>Objectif:</strong> réaliser un jeu de tower-defense monojoueur, en 2D ou en 3D, en utilisant le moteur <a href="https://bevyengine.org/">Bevy</a></p>
+<p>Fonctionalités minimales attendues:</p>
 <ul>
-<li><a href="intro.html">introduction à la syntaxe de Rust</a></li>
-<li><a href="projets.html">liste des projets</a></li>
-<li><a href="cours1.html">slides du cours n°1</a></li>
+<li>différent types de tours, avec des effets (graphiques et gameplay) complémentaires</li>
+<li>différents types de monstres</li>
 </ul>
-<h3>Descriptif détaillé des projets</h3>
-<p><a href="3_mailing-list.html">Projet n°3: gestionnaire de mailing-list</a>
-<a href="14_tower-defense.html">Projet n°14: Tower Defense</a>
-<a href="16_FPS.html">Projet n°16: FPS</a>
-<a href="18_Bevy.html">Projet n°18: contribution à Bevy</a></p>
+<p>Fonctionalités optionnelles (à développer seulement dans un deuxième temps!)</p>
+<ul>
+<li>une UI (menu démarrer, affichage du temps entre les vagues, de la vague courante, des ressources (💰), UI pour les upgrades de tours) </li>
+</ul>
+<h2>Ressources:</h2>
+<ul>
+<li>le site officiel de Bevy (il y a plein de ressources dessus dont <a href="https://bevyengine.org/learn/quick-start/getting-started/">le getting started</a>)</li>
+<li>le <a href="https://github.com/bevyengine/bevy/tree/main/examples">dossier d'exemples</a> du repo git de Bevy</li>
+<li>le <a href="https://discord.gg/s7jbXYh4">discord de Bevy</a> (particulièrement les channels #help, #tutorials et #crates)</li>
+<li>si vous voulez le faire en 3D: <a href="https://github.com/janhohenheim/foxtrot">le template Foxtrot</a> qui montre comment on fait pas mal de choses avec tout un tas de crates standard de l'écosystème Bevy/Rust</li>
+<li>Le <a href="https://bevy-cheatbook.github.io/introduction.html">Bevy cheatbook</a></li>
+<li><a href="https://itch.io/game-assets">itch.io</a> pour les assets graphiques du jeu (ne vous perdez pas trop à chercher le truc qui vous plait le plus: il y a 29 000 asset packs gratuits sur le site !)</li>
+</ul>
+<h2>Conseil</h2>
+<ul>
+<li>Essayez de suivre quelques tutos pour vous familiariser avec Bevy, puis répartisser-vous les tâches. Afficher les assets graphiques et la map à l'écran est indépendant du gameplay. Et bevy étant très modulaire, vous pouvez facilement tester l'un sans l'autre (en scriptant des objets sur la map pour travailler sur le rendu sans avoir de gameplay, et en écrivant des tests unitaires sur le gameplay qui n'ont pas besoin d'avoir de rendering).</li>
+<li>n'hésitez pas à solliciter de l'aide sur les Discord de Rust ou de Bevy quand vous êtes bloqués.</li>
+<li>regardez bien les bibliothèques/plugin Bevy qui existent et qui peuvent vous aider, notamment en parcourant le channel #crates du Discord de Bevy. N'essayez surtout pas de tout faire vous-même from scratch, par contre il est probable que vous ayez à corriger des bugs dans les libs que vous allez utiliser (puique très peu son production-ready)</li>
+<li>La UI est mise en optionnelle parce que c'est l'aspect le moins aboutis de Bevy pour le moment, donc je ne veux pas que ça vous bloque. Mais dans l'absolu ça marche et des gens y arrivent, donc si vous avez un truc jouable, et que vous avez besoin de UI vous y passer.</li>
+<li>Il est fort probable qu'une nouvelle version de Bevy sortent pendant que vous faites votre projet. <strong>Ne migrez pas vers la nouvelle version!</strong> (il y a toujours quelques semaines où les bibiothèques et plug-in sont en retard et rien ne marche).</li>
+</ul>
 
         </div>
     </body>

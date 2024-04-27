@@ -1058,17 +1058,46 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 
         </script>
         <div class="markdown-body">
-    <h1>Cours Rust ESIEA 2024</h1>
+    <h1>Un gestionnaire de mailing-list</h1>
+<p><strong>Objectif:</strong> Créer un gestionnaire de mailing-list avec une page d'administration.</p>
+<p>Qu'est-ce qu'une mailing list: </p>
+<p>Fonctionnellement: c'est une addresse mail qui va ensuite forwarder automatiquement les mails reçu en direction de toutes les addresses mails des membres de la mailing-list.</p>
+<p>Techniquement c'est deux choses:</p>
 <ul>
-<li><a href="intro.html">introduction à la syntaxe de Rust</a></li>
-<li><a href="projets.html">liste des projets</a></li>
-<li><a href="cours1.html">slides du cours n°1</a></li>
+<li>un serveur SMTP qui va posséder une base de donnée pour faire le lien entre les différentes listes et leurs membres, et ré-expédier le mail en SMTP à destination des différents destinataires.</li>
+<li>un back-office d'administration qui permet à quelqu'un de créer un compte, pour ensuite de créer et d'administrer ses mailing-list. Une mailing-list étant simplement composée d'un nom (<nom de la liste>@example.org) et d'une liste de membres.</li>
 </ul>
-<h3>Descriptif détaillé des projets</h3>
-<p><a href="3_mailing-list.html">Projet n°3: gestionnaire de mailing-list</a>
-<a href="14_tower-defense.html">Projet n°14: Tower Defense</a>
-<a href="16_FPS.html">Projet n°16: FPS</a>
-<a href="18_Bevy.html">Projet n°18: contribution à Bevy</a></p>
+<h2>Fonctionalités attendues:</h2>
+<ol>
+<li><strong>Pour le back-office</strong></li>
+</ol>
+<ul>
+<li>un endpoint de sign-in pour les gens qui souhaitent créer une mailing list (avec création d'un mdp, éventuellement validation d'un email, etc.)</li>
+<li>un endpoint de log-in </li>
+<li>un endpoint d'affichage de la liste des mailing list de l'utilisateur </li>
+<li>un endpoint de création de mailing list (avec une liste de gens à ajouter à la liste dès sa création)</li>
+<li>un endpoint d'ajout d'un utilisateur à la liste</li>
+<li>un endpoint de suppression de la mailing list</li>
+<li>un endpoint de suppression d'une utilisateur inscrit à la mailing list</li>
+</ul>
+<ol start="2">
+<li><strong>Pour le serveur SMTP</strong></li>
+</ol>
+<ul>
+<li>la capacité de forwarder un mail reçu à tous les utilisateurs inscrits à la mailing list en question</li>
+</ul>
+<h2>Défis:</h2>
+<ul>
+<li>comprendre comment utiliser un framework back-end en Rust</li>
+<li>comprendre comment marche l'infrastructure des emails (comment marche SMTP dans les grandes lignes et surtout comment faire en sorte que les mails ne soient pas marqués comme spam).</li>
+</ul>
+<h2>Ressources:</h2>
+<ul>
+<li><a href="https://actix.rs/">Actix web</a>, le framework web qu'il vous est recommandé d'utiliser</li>
+<li>[https://serde.rs/], la bibliothèque de sérialisation/désérialisation de l'écosystème Rust(dans votre cas, pour le JSON)</li>
+<li>les bibliothèques relative au SMTP sur crates.io: https://lib.rs/search?q=SMTP</li>
+<li>https://www.xomedia.io/a-deep-dive-into-email-deliverability/</li>
+</ul>
 
         </div>
     </body>
