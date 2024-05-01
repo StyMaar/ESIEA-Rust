@@ -1060,20 +1060,20 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
         <div class="markdown-body">
     <h1>19. Un système de SFX pour le FPS sur un raspberry Pi (pico)</h1>
 <p><strong>Objectif</strong>: permettre au FPS du projet n°16 de jouer des sons sur une enceinte située à distance.</p>
-<h2>Fonctionalités attendues</h2>
+<h2>Fonctionnalités attendues</h2>
 <ul>
 <li>le logiciel tourne sur un Rasberry</li>
-<li>il écoute sur le réseau et joue des sons, parmis une liste pré-enregistrée, quand il reçoit certain messages.</li>
-<li>latence suffisemment faible pour ne pas nuire à l'effet recherché</li>
+<li>il écoute sur le réseau et joue des sons, parmi une liste pré-enregistrée, quand il reçoit certain messages.</li>
+<li>latence suffisamment faible pour ne pas nuire à l'effet recherché</li>
 </ul>
 <h2>Ressources</h2>
 <ul>
-<li>Les bibliothèques <a href="https://lib.rs/crates/rodio">rodio</a> ou <a href="https://lib.rs/crates/cpal">cpal</a> pour jouer de l'audio. Rodio étant plus haut niveau que cpal (et cpal est une dépendence de rodio)</li>
+<li>Les bibliothèques <a href="https://lib.rs/crates/rodio">rodio</a> ou <a href="https://lib.rs/crates/cpal">cpal</a> pour jouer de l'audio. Rodio étant plus haut niveau que cpal (et cpal est une dépendance de rodio)</li>
 <li>pour la cross-compilation vers le Raspberry: <a href="https://github.com/cross-rs/cross">Cross</a></li>
 </ul>
 <h2>Note</h2>
 <p>Vous pouvez envisager d'utiliser une API HTTP, mais il est possible que ça génère une latence trop importante. Utiliser une simple connexion UDP peut être plus approprié, ou protocole comme QUIC par dessus UDP si vous avez des besoins spécifiques.
-Des bibiolthèques qui peuvent vous être utiles:</p>
+Des bibliothèques qui peuvent vous être utiles:</p>
 <ul>
 <li><a href="https://actix.rs/">Actix web</a> si vous voulez faire de l'HTTP</li>
 <li><a href="https://lib.rs/crates/quiche">Quiche</a> ou <a href="https://lib.rs/crates/quinn">Quinn</a> si vous voulez utiliser le protocole QUIC.</li>
