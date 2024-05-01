@@ -1058,21 +1058,23 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 
         </script>
         <div class="markdown-body">
-    <h1>Cours Rust ESIEA 2024</h1>
+    <h1>8. Un clone local de ChatGPT</h1>
+<p><strong>Objectif</strong>: réaliser un logiciel permettant de converser avec un <em>Large language model</em> tournant en local sur notre PC</p>
+<h2>fonctionnalité attendues</h2>
 <ul>
-<li><a href="intro.html">introduction à la syntaxe de Rust</a></li>
-<li><a href="projets.html">liste des projets</a></li>
-<li><a href="cours1.html">slides du cours n°1</a></li>
+<li>Une interface de chat, avec un zone de saisie de texte et une zone d'affichage de la réponse.</li>
+<li>une page de préférence, permettant de modifier le prompt «système» passé au LLM</li>
+<li>un historique des discussions précédentes avec l'assistant</li>
+<li>intégration du LLM open-source <a href="https://huggingface.co/meta-llama/Meta-Llama-3-8B">Llama3</a> via la bibliothèque <a href="https://lib.rs/crates/llama_cpp">llama-cpp</a> (qui est just un binding Rust vers la librairie C++ du même nom). Remarque: pour pouvoir utiliser le modèle, il faudra convertir le modèle du format <code>safetensor</code> au format <code>gguf</code> ou trouver le modèle déjà converti sur internet (exemple: https://huggingface.co/bartowski/Meta-Llama-3-8B-Instruct-GGUF/resolve/main/Meta-Llama-3-8B-Instruct-Q6_K.gguf?download=true).</li>
 </ul>
-<h3>Descriptif détaillé des projets</h3>
+<h2>Note</h2>
+<p>Comme <code>llama.cpp</code> est une dépendance en C++, il faut installer des dépendances dédiées qui ne sont pas gérées par <code>cargo</code> (sous linux <code>sudo apt install build-essential libclang-dev</code>)</p>
+<h2>Ressources</h2>
 <ul>
-<li><a href="3_mailing-list.html">Projet n°3: gestionnaire de mailing-list</a></li>
-<li><a href="7_photos.html">Projet n°7: un gestionnaire de photos</a></li>
-<li><a href="8_localGPT.html">Projet n°8: un clone local de ChatGPT</a></li>
-<li><a href="14_tower-defense.html">Projet n°14: Tower Defense</a></li>
-<li><a href="16_FPS.html">Projet n°16: FPS</a></li>
-<li><a href="18_Bevy.html">Projet n°18: contribution à Bevy</a></li>
-<li><a href="19_SFX-Raspberry">Projet n°19: SFX du FPS sur Raspberry</a></li>
+<li>Le <a href="https://dioxuslabs.com/">site internet de Dioxus</a></li>
+<li>le <a href="https://discord.com/invite/XgGxMSkvUM">Discord officiel</a></li>
+<li>La <a href="https://huggingface.co/blog/llama3">présentation de Llama3</a> sur hugginface</li>
+<li>le subreddit <a href="https://www.reddit.com/r/LocalLLaMA/">LocalLLaMa</a></li>
 </ul>
 
         </div>
