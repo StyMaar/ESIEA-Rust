@@ -6,6 +6,7 @@
 
 ### Descriptif détaillé des projets
 
+- [Projet n°2: service de VPN](2_VPN.html)
 - [Projet n°3: gestionnaire de mailing-list](3_mailing-list.html)
 - [Projet n°7: un gestionnaire de photos](7_photos.html)
 - [Projet n°8: un clone local de ChatGPT](8_localGPT.html)

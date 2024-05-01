@@ -1058,22 +1058,39 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 
         </script>
         <div class="markdown-body">
-    <h1>Cours Rust ESIEA 2024</h1>
+    <h1>Service de VPN</h1>
+<p><strong>Objectif</strong>: développer le backend d'un service de VPN utilisant <a href="https://www.wireguard.com/">Wireguard</a></p>
+<h2>Description du projet</h2>
+<p>La partie VPN en elle-même est assurée par Wireguard, le back-end est simplement là pour permettre de gérer dynamiquement la configuration (qui a accès, depuis quelle IP, quelle clé publique ils utilisent etc).</p>
+<p>Du point de vue du développement, il s'agit d'un back-end CRUD extrêmement basique, et il faut en plus comprendre comment fonctionne et se configure Wireguard.</p>
+<h2>Fonctionnalités attendues</h2>
+<h3>Fonctionnalités VPN</h3>
 <ul>
-<li><a href="intro.html">introduction à la syntaxe de Rust</a></li>
-<li><a href="projets.html">liste des projets</a></li>
-<li><a href="cours1.html">slides du cours n°1</a></li>
+<li>au lancement, le logiciel doit faire en sorte de configurer et de lancer le serveur wireguard. À la clôture du programme, le serveur wireguard doit lui aussi être désactivé.</li>
 </ul>
-<h3>Descriptif détaillé des projets</h3>
+<h3>Fonctionnalités d'administrations</h3>
+<p>Nécessitent d'être connectés en tant qu'administrateur</p>
 <ul>
-<li><a href="2_VPN.html">Projet n°2: service de VPN</a></li>
-<li><a href="3_mailing-list.html">Projet n°3: gestionnaire de mailing-list</a></li>
-<li><a href="7_photos.html">Projet n°7: un gestionnaire de photos</a></li>
-<li><a href="8_localGPT.html">Projet n°8: un clone local de ChatGPT</a></li>
-<li><a href="14_tower-defense.html">Projet n°14: Tower Defense</a></li>
-<li><a href="16_FPS.html">Projet n°16: FPS</a></li>
-<li><a href="18_Bevy.html">Projet n°18: contribution à Bevy</a></li>
-<li><a href="19_SFX-Raspberry">Projet n°19: SFX du FPS sur Raspberry</a></li>
+<li>endpoint d'administration, permettant d'afficher la liste des gens qui ont accès au VPN</li>
+<li>un endpoint de révocation d'accès</li>
+<li>un endpoint de création d'un nouvel accès</li>
+<li>possibilité de couper ou de démarrer le serveur wireguard</li>
+</ul>
+<h3>Fonctionnalité de back-office</h3>
+<ul>
+<li>endpoint de page d'accueil récapitulant les informations nécessaires à l'utilisateur</li>
+<li>endpoint d'authentification</li>
+<li>endpoint de mise à jour du mot de passe</li>
+<li>endpoint de génération de pair de clés et de mise à jour de la configuration Wireguard</li>
+</ul>
+<h2>Fonctionnalités optionnelles</h2>
+<ul>
+<li>en plus des endpoint JSON, faire des pages HTML+CSS pour y accéder facilement depuis le navigateur. Idéalement, on veut utiliser le header HTTP <code>Accept</code> pour que le back-end sache s'il doit retourner une page HTML ou un JSON</li>
+</ul>
+<h2>Ressources:</h2>
+<ul>
+<li><a href="https://actix.rs/">Actix web</a>, le framework web qu'il vous est recommandé d'utiliser</li>
+<li>[https://serde.rs/], la bibliothèque de sérialisation/désérialisation de l'écosystème Rust (pour le JSON, dans votre cas)</li>
 </ul>
 
         </div>
