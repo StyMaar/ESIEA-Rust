@@ -16,7 +16,7 @@ Du point de vue du développement, il s'agit d'un back-end CRUD extrêmement bas
 
 ### Fonctionnalités d'administrations
 
-Nécessitent d'être connectés en tant qu'administrateur
+Nécessitent d'être connecté en tant qu'administrateur
 
 - endpoint d'administration, permettant d'afficher la liste des gens qui ont accès au VPN
 - un endpoint de révocation d'accès
