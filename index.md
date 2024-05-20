@@ -6,6 +6,7 @@
 
 ### Descriptif détaillé des projets
 
+- [Projet n°1: moteur de blog](1_blog.html)
 - [Projet n°2: service de VPN](2_VPN.html)
 - [Projet n°3: gestionnaire de mailing-list](3_mailing-list.html)
 - [Projet n°7: un gestionnaire de photos](7_photos.html)

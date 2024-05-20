@@ -1058,23 +1058,68 @@ Prism.languages.javascript=Prism.languages.extend("clike",{"class-name":[Prism.l
 
         </script>
         <div class="markdown-body">
-    <h1>Cours Rust ESIEA 2024</h1>
+    <h1>Un moteur de blog</h1>
+<h2>Aperçu</h2>
+<p>Le moteur de blog est une application web qui permet aux utilisateurs de créer, de gérer et de publier des blogs. Le moteur doit fournir une interface conviviale permettant aux auteurs de rédiger, d'éditer et de publier des articles de blog. Les données relatives au blog seront stockées dans une base de données SQLite.</p>
+<h2>Fonctionnalités attendues</h2>
+<ol>
+<li><strong>Gestion des utilisateurs</strong>
 <ul>
-<li><a href="intro.html">introduction à la syntaxe de Rust</a></li>
-<li><a href="projets.html">liste des projets</a></li>
-<li><a href="cours1.html">slides du cours n°1</a></li>
+<li>Utilisateurs enregistrés : l'auteur se crée un compte via la ligne de commande, lors du premier démarrage du serveur.</li>
+<li>Rôles des utilisateurs : auteur et invités (utilisateurs anonymes).</li>
+<li>Profils d'utilisateurs : affichage des informations sur l'auteur, y compris le nom, l'adresse électronique (optionnelle) et la biographie.</li>
 </ul>
-<h3>Descriptif détaillé des projets</h3>
+</li>
+<li><strong>Gestion du blog</strong>
 <ul>
-<li><a href="1_blog.html">Projet n°1: moteur de blog</a></li>
-<li><a href="2_VPN.html">Projet n°2: service de VPN</a></li>
-<li><a href="3_mailing-list.html">Projet n°3: gestionnaire de mailing-list</a></li>
-<li><a href="7_photos.html">Projet n°7: un gestionnaire de photos</a></li>
-<li><a href="8_localGPT.html">Projet n°8: un clone local de ChatGPT</a></li>
-<li><a href="14_tower-defense.html">Projet n°14: Tower Defense</a></li>
-<li><a href="16_FPS.html">Projet n°16: FPS</a></li>
-<li><a href="18_Bevy.html">Projet n°18: contribution à Bevy</a></li>
-<li><a href="19_SFX-Raspberry">Projet n°19: SFX du FPS sur Raspberry</a></li>
+<li>Configurer les paramètres du blog : titre, description, mots-clés. Au choix: soit depuis une interface web, soit depuis la ligne de commande ou un fichier de config.</li>
+</ul>
+</li>
+<li><strong>Gestion des billets</strong>
+<ul>
+<li>Créez, modifiez et supprimez des articles de blog.</li>
+<li>Métadonnées de l'article : titre, contenu, date, auteur et catégories.</li>
+</ul>
+</li>
+<li><strong>Gestion du contenu</strong>
+<ul>
+<li>Editeur WYSIWYG (avec <a href="https://prosemirror.net/">ProseMirror</a>) pour la création et l'édition d'articles de blog.</li>
+<li>Prise en charge des images, des vidéos et d'autres contenus multimédias (ça implique d'être capable d'uploader lesdits contenus sur le blog directement depuis la )</li>
+</ul>
+</li>
+<li><strong>Catégories et balises</strong>
+<ul>
+<li>Créer, modifier et supprimer des catégories (tags).</li>
+<li>Attribuer des catégories aux articles de blog.</li>
+</ul>
+</li>
+<li><strong>SEO</strong>
+<ul>
+<li>Optimiser les articles de blog pour les moteurs de recherche (SEO) en utilisant des balises meta, des titres et des descriptions.</li>
+<li>Générer des sitemaps pour les moteurs de recherche.</li>
+</ul>
+</li>
+<li><strong>Statistiques et analyses</strong>
+<ul>
+<li>Les statistiques minimalistes: les pages vues et les visiteurs uniques (via l'adresse IP)</li>
+</ul>
+</li>
+<li><strong>Sécurité</strong>
+<ul>
+<li>Chiffrement (HTTPS) via let's encrypt (ACME).</li>
+<li>Prévention des attaques de type XSS et CSRF.</li>
+</ul>
+</li>
+<li><strong>Documentation</strong>
+<ul>
+<li>fournir une documentation de déploiement</li>
+</ul>
+</li>
+</ol>
+<h2>Ressources:</h2>
+<ul>
+<li><a href="https://actix.rs/">Actix web</a>, le framework web qu'il vous est recommandé d'utiliser</li>
+<li><a href="https://prosemirror.net/">ProseMirror</a>, pour l'éditeur WYSIWYG</li>
 </ul>
 
         </div>
